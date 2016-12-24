@@ -141,7 +141,7 @@
 
 **[⬆ 返回目录](#table-of-contents)**
 
-## Objects
+## 对象 Objects
 
   <a name="objects--no-new"></a><a name="3.1"></a>
   - [3.1](#objects--no-new) 使用字面量定义 object。 eslint: [`no-new-object`](http://eslint.org/docs/rules/no-new-object.html)
@@ -315,10 +315,10 @@
 
 **[⬆ 返回目录](#table-of-contents)**
 
-## Arrays
+## 数组 Arrays
 
   <a name="arrays--literals"></a><a name="4.1"></a>
-  - [4.1](#arrays--literals) Use the literal syntax for array creation. eslint: [`no-array-constructor`](http://eslint.org/docs/rules/no-array-constructor.html)
+  - [4.1](#arrays--literals) 通过字面量创建数组。eslint: [`no-array-constructor`](http://eslint.org/docs/rules/no-array-constructor.html)
 
     ```javascript
     // bad
@@ -329,7 +329,7 @@
     ```
 
   <a name="arrays--push"></a><a name="4.2"></a>
-  - [4.2](#arrays--push) Use [Array#push](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/push) instead of direct assignment to add items to an array.
+  - [4.2](#arrays--push) 使用 [Array#push](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/push) 而不是通过下标赋值。
 
     ```javascript
     const someStack = [];
@@ -342,7 +342,7 @@
     ```
 
   <a name="es6-array-spreads"></a><a name="4.3"></a>
-  - [4.3](#es6-array-spreads) Use array spreads `...` to copy arrays.
+  - [4.3](#es6-array-spreads) 使用展开运算符 `...` 来复制数组.
 
     ```javascript
     // bad
@@ -359,7 +359,7 @@
     ```
 
   <a name="arrays--from"></a><a name="4.4"></a>
-  - [4.4](#arrays--from) To convert an array-like object to an array, use [Array.from](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from).
+  - [4.4](#arrays--from) 使用 [Array.from](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) 来转换类数组对象.
 
     ```javascript
     const foo = document.querySelectorAll('.foo');
@@ -367,7 +367,7 @@
     ```
 
   <a name="arrays--callback-return"></a><a name="4.5"></a>
-  - [4.5](#arrays--callback-return) Use return statements in array method callbacks. It's ok to omit the return if the function body consists of a single statement following [8.2](#8.2). eslint: [`array-callback-return`](http://eslint.org/docs/rules/array-callback-return)
+  - [4.5](#arrays--callback-return) 在数组回调方法中使用 return。函数声明只有一行时可以省略 return。 [8.2](#8.2). eslint: [`array-callback-return`](http://eslint.org/docs/rules/array-callback-return)
 
     ```javascript
     // good
@@ -415,14 +415,14 @@
     });
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 返回目录](#table-of-contents)**
 
-## Destructuring
+## 解构赋值 Destructuring
 
   <a name="destructuring--object"></a><a name="5.1"></a>
-  - [5.1](#destructuring--object) Use object destructuring when accessing and using multiple properties of an object. jscs: [`requireObjectDestructuring`](http://jscs.info/rule/requireObjectDestructuring)
+  - [5.1](#destructuring--object) 当对象有多个属性时使用解构赋值。 jscs: [`requireObjectDestructuring`](http://jscs.info/rule/requireObjectDestructuring)
 
-    > Why? Destructuring saves you from creating temporary references for those properties.
+    > 为什么? 解构可以避免为这些属性创建临时引用。
 
     ```javascript
     // bad
@@ -446,7 +446,7 @@
     ```
 
   <a name="destructuring--array"></a><a name="5.2"></a>
-  - [5.2](#destructuring--array) Use array destructuring. jscs: [`requireArrayDestructuring`](http://jscs.info/rule/requireArrayDestructuring)
+  - [5.2](#destructuring--array) 数组使用解构。 jscs: [`requireArrayDestructuring`](http://jscs.info/rule/requireArrayDestructuring)
 
     ```javascript
     const arr = [1, 2, 3, 4];
@@ -460,7 +460,7 @@
     ```
 
   <a name="destructuring--object-over-array"></a><a name="5.3"></a>
-  - [5.3](#destructuring--object-over-array) Use object destructuring for multiple return values, not array destructuring. jscs: [`disallowArrayDestructuringReturn`](http://jscs.info/rule/disallowArrayDestructuringReturn)
+  - [5.3](#destructuring--object-over-array) 返回多个值时使用对象解构，而不是数组解构。 jscs: [`disallowArrayDestructuringReturn`](http://jscs.info/rule/disallowArrayDestructuringReturn)
 
     > Why? You can add new properties over time or change the order of things without breaking call sites.
 
@@ -485,12 +485,12 @@
     ```
 
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 返回目录](#table-of-contents)**
 
-## Strings
+## 字符串 Strings
 
   <a name="strings--quotes"></a><a name="6.1"></a>
-  - [6.1](#strings--quotes) Use single quotes `''` for strings. eslint: [`quotes`](http://eslint.org/docs/rules/quotes.html) jscs: [`validateQuoteMarks`](http://jscs.info/rule/validateQuoteMarks)
+  - [6.1](#strings--quotes) 对字符串使用单引号 `''`。 eslint: [`quotes`](http://eslint.org/docs/rules/quotes.html) jscs: [`validateQuoteMarks`](http://jscs.info/rule/validateQuoteMarks)
 
     ```javascript
     // bad
@@ -505,6 +505,7 @@
 
   <a name="strings--line-length"></a><a name="6.2"></a>
   - [6.2](#strings--line-length) Strings that cause the line to go over 100 characters should not be written across multiple lines using string concatenation.
+  - [6.2](#strings--line-length) 。
 
     > Why? Broken strings are painful to work with and make code less searchable.
 
