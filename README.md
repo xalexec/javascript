@@ -504,10 +504,10 @@
     ```
 
   <a name="strings--line-length"></a><a name="6.2"></a>
-  - [6.2](#strings--line-length) Strings that cause the line to go over 100 characters should not be written across multiple lines using string concatenation.
-  - [6.2](#strings--line-length) 。
+  - [6.2](#strings--line-length) Strings 的长度超过100个字符时不要使用加号写成多行。
 
     > Why? Broken strings are painful to work with and make code less searchable.
+    > 为什么？被破坏的 Strings 读起来是痛苦的，使用代码更少易搜索。
 
     ```javascript
     // bad
@@ -526,7 +526,7 @@
     ```
 
   <a name="es6-template-literals"></a><a name="6.4"></a>
-  - [6.3](#es6-template-literals) When programmatically building up strings, use template strings instead of concatenation. eslint: [`prefer-template`](http://eslint.org/docs/rules/prefer-template.html) [`template-curly-spacing`](http://eslint.org/docs/rules/template-curly-spacing) jscs: [`requireTemplateStrings`](http://jscs.info/rule/requireTemplateStrings)
+  - [6.3](#es6-template-literals) 什么程序构造 Strings 时，使用字符串模版。 eslint: [`prefer-template`](http://eslint.org/docs/rules/prefer-template.html) [`template-curly-spacing`](http://eslint.org/docs/rules/template-curly-spacing) jscs: [`requireTemplateStrings`](http://jscs.info/rule/requireTemplateStrings)
 
     > Why? Template strings give you a readable, concise syntax with proper newlines and string interpolation features.
 
@@ -553,12 +553,13 @@
     ```
 
   <a name="strings--eval"></a><a name="6.5"></a>
-  - [6.4](#strings--eval) Never use `eval()` on a string, it opens too many vulnerabilities.
+  - [6.4](#strings--eval) 禁止在 string 上使用 `eval()`，这将会产生漏洞。
 
   <a name="strings--escaping"></a>
-  - [6.5](#strings--escaping) Do not unnecessarily escape characters in strings. eslint: [`no-useless-escape`](http://eslint.org/docs/rules/no-useless-escape)
+  - [6.5](#strings--escaping) 不要在不必要的地方使用转意。 eslint: [`no-useless-escape`](http://eslint.org/docs/rules/no-useless-escape)
 
     > Why? Backslashes harm readability, thus they should only be present when necessary.
+    > 为什么？反斜杠有损可读性。
 
     ```javascript
     // bad
@@ -569,15 +570,15 @@
     const foo = `my name is '${name}'`;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 返回目录](#table-of-contents)**
 
 
-## Functions
+## 函数 Functions
 
   <a name="functions--declarations"></a><a name="7.1"></a>
-  - [7.1](#functions--declarations) Use named function expressions instead of function declarations. eslint: [`func-style`](http://eslint.org/docs/rules/func-style) jscs: [`requireFunctionDeclarations`](http://jscs.info/rule/requireFunctionDeclarations)
+  - [7.1](#functions--declarations) 使用函数表达式代替函数声明。 eslint: [`func-style`](http://eslint.org/docs/rules/func-style) jscs: [`requireFunctionDeclarations`](http://jscs.info/rule/requireFunctionDeclarations)
 
-    > Why? Function declarations are hoisted, which means that it’s easy - too easy - to reference the function before it is defined in the file. This harms readability and maintainability. If you find that a function’s definition is large or complex enough that it is interfering with understanding the rest of the file, then perhaps it’s time to extract it to its own module! Don’t forget to name the expression - anonymous functions can make it harder to locate the problem in an Error's call stack. ([Discussion](https://github.com/airbnb/javascript/issues/794))
+    > 为什么？函数声明具有提升作用，这意味着可以在文件中定义前就可以引用（使用），这有损可读性和可维护性。好果你发现函数定义太庞大太复杂，影响了你对文件中其它内容的理解，这意味着你应该将它提取成模块！不要忘记命名函数，匿明函数在产生 bug 时很难定位。
 
     ```javascript
     // bad
@@ -594,9 +595,9 @@
     ```
 
   <a name="functions--iife"></a><a name="7.2"></a>
-  - [7.2](#functions--iife) Wrap immediately invoked function expressions in parentheses. eslint: [`wrap-iife`](http://eslint.org/docs/rules/wrap-iife.html) jscs: [`requireParenthesesAroundIIFE`](http://jscs.info/rule/requireParenthesesAroundIIFE)
+  - [7.2](#functions--iife) 使用括号包裹立即执行函数。 eslint: [`wrap-iife`](http://eslint.org/docs/rules/wrap-iife.html) jscs: [`requireParenthesesAroundIIFE`](http://jscs.info/rule/requireParenthesesAroundIIFE)
 
-    > Why? An immediately invoked function expression is a single unit - wrapping both it, and its invocation parens, in parens, cleanly expresses this. Note that in a world with modules everywhere, you almost never need an IIFE.
+    > 为什么？立即执行函数是独立单元，在它的括号中清楚的定义。注意在模块化的世界中，你几乎不需要立即执行函数。
 
     ```javascript
     // immediately-invoked function expression (IIFE)
@@ -606,10 +607,10 @@
     ```
 
   <a name="functions--in-blocks"></a><a name="7.3"></a>
-  - [7.3](#functions--in-blocks) Never declare a function in a non-function block (if, while, etc). Assign the function to a variable instead. Browsers will allow you to do it, but they all interpret it differently, which is bad news bears. eslint: [`no-loop-func`](http://eslint.org/docs/rules/no-loop-func.html)
+  - [7.3](#functions--in-blocks) 禁止在 (if, while等) 块中定义函数，将函数赋值给 var 变量。 eslint: [`no-loop-func`](http://eslint.org/docs/rules/no-loop-func.html)
 
   <a name="functions--note-on-blocks"></a><a name="7.4"></a>
-  - [7.4](#functions--note-on-blocks) **Note:** ECMA-262 defines a `block` as a list of statements. A function declaration is not a statement. [Read ECMA-262's note on this issue](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97).
+  - [7.4](#functions--note-on-blocks) **注意:** ECMA-262 定义代码块 `block` 是语包。函数声明不是语句。 [问题 ECMA-262's 关于这个问题的说明](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97).
 
     ```javascript
     // bad
@@ -629,7 +630,7 @@
     ```
 
   <a name="functions--arguments-shadow"></a><a name="7.5"></a>
-  - [7.5](#functions--arguments-shadow) Never name a parameter `arguments`. This will take precedence over the `arguments` object that is given to every function scope.
+  - [7.5](#functions--arguments-shadow) 禁止命名参数名为 `arguments`。这将会取代内置对象 `arguments`。
 
     ```javascript
     // bad
@@ -644,9 +645,9 @@
     ```
 
   <a name="es6-rest"></a><a name="7.6"></a>
-  - [7.6](#es6-rest) Never use `arguments`, opt to use rest syntax `...` instead. eslint: [`prefer-rest-params`](http://eslint.org/docs/rules/prefer-rest-params)
+ - [7.6](#es6-rest) 不要使用 `arguments`，使用可变参数 rest 参数（可变参数） `...` 代替。 eslint: [`prefer-rest-params`](http://eslint.org/docs/rules/prefer-rest-params)
 
-    > Why? `...` is explicit about which arguments you want pulled. Plus, rest arguments are a real Array, and not merely Array-like like `arguments`.
+    > 为什么? `...` 清楚的指明你要使用那个参数。rest 参数是真正的数组，而 `arguments` 是类数组。
 
     ```javascript
     // bad
@@ -662,13 +663,15 @@
     ```
 
   <a name="es6-default-parameters"></a><a name="7.7"></a>
-  - [7.7](#es6-default-parameters) Use default parameter syntax rather than mutating function arguments.
+  - [7.7](#es6-default-parameters) 使用参数默认值语法，而不是改变函数参数。
 
     ```javascript
     // really bad
     function handleThings(opts) {
       // No! We shouldn't mutate function arguments.
+      // 不！我们不应该改变参数的值。
       // Double bad: if opts is falsy it'll be set to an object which may
+      // 第二错：如果 opts 是一个可转为 false 的值（falsy），它会被设置为 object ，可能你就是要这么做，但这是会导致一些微秒的 bugs。
       // be what you want but it can introduce subtle bugs.
       opts = opts || {};
       // ...
@@ -689,9 +692,9 @@
     ```
 
   <a name="functions--default-side-effects"></a><a name="7.8"></a>
-  - [7.8](#functions--default-side-effects) Avoid side effects with default parameters.
+  - [7.8](#functions--default-side-effects) 避免将可变表达式设为默认值。
 
-    > Why? They are confusing to reason about.
+    > 为什么？这会让人困惑。
 
     ```javascript
     var b = 1;
@@ -706,7 +709,7 @@
     ```
 
   <a name="functions--defaults-last"></a><a name="7.9"></a>
-  - [7.9](#functions--defaults-last) Always put default parameters last.
+  - [7.9](#functions--defaults-last) 始终将有默认值的参数放在最后。
 
     ```javascript
     // bad
@@ -721,9 +724,9 @@
     ```
 
   <a name="functions--constructor"></a><a name="7.10"></a>
-  - [7.10](#functions--constructor) Never use the Function constructor to create a new function. eslint: [`no-new-func`](http://eslint.org/docs/rules/no-new-func)
+  - [7.10](#functions--constructor) 禁止使用 Function 构造函数创建函数。 eslint: [`no-new-func`](http://eslint.org/docs/rules/no-new-func)
 
-    > Why? Creating a function in this way evaluates a string similarly to eval(), which opens vulnerabilities.
+    > 为什么？这样创建函数类似于使用 eval() 计算字符串，会导致漏洞。
 
     ```javascript
     // bad
@@ -734,9 +737,9 @@
     ```
 
   <a name="functions--signature-spacing"></a><a name="7.11"></a>
-  - [7.11](#functions--signature-spacing) Spacing in a function signature. eslint: [`space-before-function-paren`](http://eslint.org/docs/rules/space-before-function-paren) [`space-before-blocks`](http://eslint.org/docs/rules/space-before-blocks)
+  - [7.11](#functions--signature-spacing) 在 function 关键字会添加空格。 eslint: [`space-before-function-paren`](http://eslint.org/docs/rules/space-before-function-paren) [`space-before-blocks`](http://eslint.org/docs/rules/space-before-blocks)
 
-    > Why? Consistency is good, and you shouldn’t have to add or remove a space when adding or removing a name.
+     > 为什么？统一格式，你不必在添加或是删除函数名时添加或删除空格。
 
     ```javascript
     // bad
@@ -750,9 +753,9 @@
     ```
 
   <a name="functions--mutate-params"></a><a name="7.12"></a>
-  - [7.12](#functions--mutate-params) Never mutate parameters. eslint: [`no-param-reassign`](http://eslint.org/docs/rules/no-param-reassign.html)
+  - [7.12](#functions--mutate-params) 禁止修改传入参数。 eslint: [`no-param-reassign`](http://eslint.org/docs/rules/no-param-reassign.html)
 
-    > Why? Manipulating objects passed in as parameters can cause unwanted variable side effects in the original caller.
+    > 为什么？操作传入参数会改变调用者的原始值，引起不必要的副作用。
 
     ```javascript
     // bad
@@ -767,9 +770,9 @@
     ```
 
   <a name="functions--reassign-params"></a><a name="7.13"></a>
-  - [7.13](#functions--reassign-params) Never reassign parameters. eslint: [`no-param-reassign`](http://eslint.org/docs/rules/no-param-reassign.html)
+  - [7.13](#functions--reassign-params) 禁止重新指定新值给传入参数。 eslint: [`no-param-reassign`](http://eslint.org/docs/rules/no-param-reassign.html)
 
-    > Why? Reassigning parameters can lead to unexpected behavior, especially when accessing the `arguments` object. It can also cause optimization issues, especially in V8.
+    > 为什么？重新指定新值给传入参数可能会导致意外的问题，特别是在访问  `arguments` 对象时。还会产生优化问题，特别是在 V8 引擎。
 
     ```javascript
     // bad
@@ -791,9 +794,9 @@
     ```
 
   <a name="functions--spread-vs-apply"></a><a name="7.14"></a>
-  - [7.14](#functions--spread-vs-apply) Prefer the use of the spread operator `...` to call variadic functions. eslint: [`prefer-spread`](http://eslint.org/docs/rules/prefer-spread)
-
-    > Why? It's cleaner, you don't need to supply a context, and you can not easily compose `new` with `apply`.
+  - [7.14](#functions--spread-vs-apply) 使用展开运算符 `...` 去调用接收可变值的函数。 eslint: [`prefer-spread`](http://eslint.org/docs/rules/prefer-spread)
+   
+    > 为什么？这样是清淅的，你不用指定上下文（this），不在需要使用 `apply`。
 
     ```javascript
     // bad
@@ -812,7 +815,7 @@
     ```
 
   <a name="functions--signature-invocation-indentation"></a>
-  - [7.15](#functions--signature-invocation-indentation) Functions with multiline signatures, or invocations, should be indented just like every other multiline list in this guide: with each item on a line by itself, with a trailing comma on the last item.
+  - [7.15](#functions--signature-invocation-indentation) 多行参数的函数需要缩进，像本指南中的其它多行列表一样，每行一个值，在最后一项上也需要有逗号。
 
     ```javascript
     // bad
@@ -844,7 +847,7 @@
     );
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 返回目录](#table-of-contents)**
 
 ## Arrow Functions
 
