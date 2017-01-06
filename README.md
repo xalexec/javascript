@@ -974,12 +974,12 @@
 **[⬆ 返回目录](#table-of-contents)**
 
 
-## Classes & Constructors
+## 类 & 构造函数 Classes & Constructors
 
   <a name="constructors--use-class"></a><a name="9.1"></a>
-  - [9.1](#constructors--use-class) Always use `class`. Avoid manipulating `prototype` directly.
+  - [9.1](#constructors--use-class) 总是使用 `class`.避免直接使用 `prototype`。
 
-    > Why? `class` syntax is more concise and easier to reason about.
+    > 为什么？`class` 语法更简洁更容易。
 
     ```javascript
     // bad
@@ -1007,9 +1007,9 @@
     ```
 
   <a name="constructors--extends"></a><a name="9.2"></a>
-  - [9.2](#constructors--extends) Use `extends` for inheritance.
+  - [9.2](#constructors--extends) 使用 `extends` 进行继承。
 
-    > Why? It is a built-in way to inherit prototype functionality without breaking `instanceof`.
+    > 为什么? 它是内置的继承方法，不会破坏 `instanceof`。
 
     ```javascript
     // bad
@@ -1031,7 +1031,7 @@
     ```
 
   <a name="constructors--chaining"></a><a name="9.3"></a>
-  - [9.3](#constructors--chaining) Methods can return `this` to help with method chaining.
+  - [9.3](#constructors--chaining) 方法可以返回 `this` 来帮助进行链式调用。
 
     ```javascript
     // bad
@@ -1069,7 +1069,7 @@
 
 
   <a name="constructors--tostring"></a><a name="9.4"></a>
-  - [9.4](#constructors--tostring) It's okay to write a custom toString() method, just make sure it works successfully and causes no side effects.
+  - [9.4](#constructors--tostring) 允许自定义 toString() 方法，只要能确保工作正常就可以。
 
     ```javascript
     class Jedi {
@@ -1088,7 +1088,7 @@
     ```
 
   <a name="constructors--no-useless"></a><a name="9.5"></a>
-  - [9.5](#constructors--no-useless) Classes have a default constructor if one is not specified. An empty constructor function or one that just delegates to a parent class is unnecessary. eslint: [`no-useless-constructor`](http://eslint.org/docs/rules/no-useless-constructor)
+  - [9.5](#constructors--no-useless) 空构造函数或是只调用父类的空构造函数是没有必要的。 eslint: [`no-useless-constructor`](http://eslint.org/docs/rules/no-useless-constructor)
 
     ```javascript
     // bad
@@ -1118,8 +1118,9 @@
 
   <a name="classes--no-duplicate-members"></a>
   - [9.6](#classes--no-duplicate-members) Avoid duplicate class members. eslint: [`no-dupe-class-members`](http://eslint.org/docs/rules/no-dupe-class-members)
+  - [9.6](#classes--no-duplicate-members) 避免重复类成员。 eslint: [`no-dupe-class-members`](http://eslint.org/docs/rules/no-dupe-class-members)
 
-    > Why? Duplicate class member declarations will silently prefer the last one - having duplicates is almost certainly a bug.
+    > 为什么？重复方法只会保留最后一个，有重复方法几乎必然会有 bug。
 
     ```javascript
     // bad
@@ -1140,15 +1141,16 @@
     ```
 
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 返回目录](#table-of-contents)**
 
 
-## Modules
+## 模块 Modules
 
   <a name="modules--use-them"></a><a name="10.1"></a>
-  - [10.1](#modules--use-them) Always use modules (`import`/`export`) over a non-standard module system. You can always transpile to your preferred module system.
+  - [10.1](#modules--use-them) 始终使用模块化 (`import`/`export`) 。
 
     > Why? Modules are the future, let's start using the future now.
+    > 为什么？模块化是新特性，开始使用它吧。
 
     ```javascript
     // bad
