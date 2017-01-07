@@ -1148,7 +1148,6 @@
   <a name="modules--use-them"></a><a name="10.1"></a>
   - [10.1](#modules--use-them) 始终使用模块化 (`import`/`export`) 。
 
-    > Why? Modules are the future, let's start using the future now.
     > 为什么？模块化是新特性，开始使用它吧。
 
     ```javascript
@@ -1195,7 +1194,7 @@
     ```
 
   <a name="modules--no-duplicate-imports"></a>
-  - [10.4](#modules--no-duplicate-imports) 共一路径只有一个地方 import。 eslint: [`no-duplicate-imports`](http://eslint.org/docs/rules/no-duplicate-imports)
+  - [10.4](#modules--no-duplicate-imports) 同一路径只有一个地方 import。 eslint: [`no-duplicate-imports`](http://eslint.org/docs/rules/no-duplicate-imports)
 
     > 为什么？多行 import 同一个路径会使代码难以维护。
 
