@@ -1117,7 +1117,6 @@
     ```
 
   <a name="classes--no-duplicate-members"></a>
-  - [9.6](#classes--no-duplicate-members) Avoid duplicate class members. eslint: [`no-dupe-class-members`](http://eslint.org/docs/rules/no-dupe-class-members)
   - [9.6](#classes--no-duplicate-members) 避免重复类成员。 eslint: [`no-dupe-class-members`](http://eslint.org/docs/rules/no-dupe-class-members)
 
     > 为什么？重复方法只会保留最后一个，有重复方法几乎必然会有 bug。
@@ -1167,9 +1166,9 @@
     ```
 
   <a name="modules--no-wildcard"></a><a name="10.2"></a>
-  - [10.2](#modules--no-wildcard) Do not use wildcard imports.
+  - [10.2](#modules--no-wildcard) 不要使用通配符 import。
 
-    > Why? This makes sure you have a single default export.
+    > 为什么？这确保你有一个默认的 export。
 
     ```javascript
     // bad
@@ -1180,9 +1179,9 @@
     ```
 
   <a name="modules--no-export-from-import"></a><a name="10.3"></a>
-  - [10.3](#modules--no-export-from-import) And do not export directly from an import.
+  - [10.3](#modules--no-export-from-import) 不在一行复合写 export import.
 
-    > Why? Although the one-liner is concise, having one clear way to import and one clear way to export makes things consistent.
+    > 为什么？一行虽然看起来简洁，但是一个清楚的 import 和一个清楚的 export 会使代码更加一致。
 
     ```javascript
     // bad
@@ -1196,9 +1195,9 @@
     ```
 
   <a name="modules--no-duplicate-imports"></a>
-  - [10.4](#modules--no-duplicate-imports) Only import from a path in one place.
- eslint: [`no-duplicate-imports`](http://eslint.org/docs/rules/no-duplicate-imports)
-    > Why? Having multiple lines that import from the same path can make code harder to maintain.
+  - [10.4](#modules--no-duplicate-imports) 共一路径只有一个地方 import。 eslint: [`no-duplicate-imports`](http://eslint.org/docs/rules/no-duplicate-imports)
+
+    > 为什么？多行 import 同一个路径会使代码难以维护。
 
     ```javascript
     // bad
@@ -1217,8 +1216,8 @@
     ```
 
   <a name="modules--no-mutable-exports"></a>
-  - [10.5](#modules--no-mutable-exports) Do not export mutable bindings.
- eslint: [`import/no-mutable-exports`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-mutable-exports.md)
+  - [10.5](#modules--no-mutable-exports) 不 export 可变的数据。 eslint: [`import/no-mutable-exports`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-mutable-exports.md)
+    
     > Why? Mutation should be avoided in general, but in particular when exporting mutable bindings. While this technique may be needed for some special cases, in general, only constant references should be exported.
 
     ```javascript
@@ -1232,7 +1231,7 @@
     ```
 
   <a name="modules--prefer-default-export"></a>
-  - [10.6](#modules--prefer-default-export) In modules with a single export, prefer default export over named export.
+  - [10.6](#modules--prefer-default-export) 模块只有一个 export 时，使用 default。
  eslint: [`import/prefer-default-export`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/prefer-default-export.md)
 
     ```javascript
@@ -1244,9 +1243,10 @@
     ```
 
   <a name="modules--imports-first"></a>
-  - [10.7](#modules--imports-first) Put all `import`s above non-import statements.
+  - [10.7](#modules--imports-first) 把所有 `import` 放到顶部.
  eslint: [`import/first`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/first.md)
-    > Why? Since `import`s are hoisted, keeping them all at the top prevents surprising behavior.
+    
+    > 为什么？ import 有变量提升作用，将它们放到顶部可以防止出来意外行为。
 
     ```javascript
     // bad
@@ -1263,9 +1263,9 @@
     ```
 
   <a name="modules--multiline-imports-over-newlines"></a>
-  - [10.8](#modules--multiline-imports-over-newlines) Multiline imports should be indented just like multiline array and object literals.
+  - [10.8](#modules--multiline-imports-over-newlines) 多行 import 应该像对象或者数组定义一样进行缩进。
 
-    > Why? The curly braces follow the same indentation rules as every other curly brace block in the style guide, as do the trailing commas.
+    > 为什么？遵循相同的缩进几格。
 
     ```javascript
     // bad
@@ -1282,10 +1282,11 @@
     ```
 
   <a name="modules--no-webpack-loader-syntax"></a>
-  - [10.9](#modules--no-webpack-loader-syntax) Disallow Webpack loader syntax in module import statements.
+  - [10.9](#modules--no-webpack-loader-syntax) 不允许在 import 中使用 webpack loader 语法.
  eslint: [`import/no-webpack-loader-syntax`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-webpack-loader-syntax.md)
-    > Why? Since using Webpack syntax in the imports couples the code to a module bundler. Prefer using the loader syntax in `webpack.config.js`.
-
+    
+    > 为什么？在 import 中什么 loader 会增加耦合度，应该放到 `webpack.config.js` 中去。
+    
     ```javascript
     // bad
     import fooSass from 'css!sass!foo.scss';
@@ -1296,7 +1297,7 @@
     import barCss from 'bar.css';
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 返回目录](#table-of-contents)**
 
 ## Iterators and Generators
 
