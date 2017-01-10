@@ -277,7 +277,7 @@
   - [3.7](#objects--prototype-builtins) 不要直接调用 `Object.prototype`，`hasOwnProperty`，`propertyIsEnumerable`，`isPrototypeOf`。
 
     > 为什么？这些方法可能是对象的属性 `{ hasOwnProperty: false }`，或者对象是 null (`Object.create(null)`)。
-  
+
     ```javascript
     // bad
     console.log(object.hasOwnProperty(key));
@@ -795,7 +795,7 @@
 
   <a name="functions--spread-vs-apply"></a><a name="7.14"></a>
   - [7.14](#functions--spread-vs-apply) 使用展开运算符 `...` 去调用接收可变值的函数。 eslint: [`prefer-spread`](http://eslint.org/docs/rules/prefer-spread)
-   
+
     > 为什么？这样是清淅的，你不用指定上下文（this），不在需要使用 `apply`。
 
     ```javascript
@@ -1216,7 +1216,7 @@
 
   <a name="modules--no-mutable-exports"></a>
   - [10.5](#modules--no-mutable-exports) 不 export 可变的数据。 eslint: [`import/no-mutable-exports`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-mutable-exports.md)
-    
+
     > Why? Mutation should be avoided in general, but in particular when exporting mutable bindings. While this technique may be needed for some special cases, in general, only constant references should be exported.
 
     ```javascript
@@ -1244,7 +1244,7 @@
   <a name="modules--imports-first"></a>
   - [10.7](#modules--imports-first) 把所有 `import` 放到顶部.
  eslint: [`import/first`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/first.md)
-    
+
     > 为什么？ import 有变量提升作用，将它们放到顶部可以防止出来意外行为。
 
     ```javascript
@@ -1283,9 +1283,9 @@
   <a name="modules--no-webpack-loader-syntax"></a>
   - [10.9](#modules--no-webpack-loader-syntax) 不允许在 import 中使用 webpack loader 语法.
  eslint: [`import/no-webpack-loader-syntax`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-webpack-loader-syntax.md)
-    
+
     > 为什么？在 import 中什么 loader 会增加耦合度，应该放到 `webpack.config.js` 中去。
-    
+
     ```javascript
     // bad
     import fooSass from 'css!sass!foo.scss';
@@ -1298,12 +1298,12 @@
 
 **[⬆ 返回目录](#table-of-contents)**
 
-## Iterators and Generators
+## 迭代器和Generators Iterators and Generators
 
   <a name="iterators--nope"></a><a name="11.1"></a>
-  - [11.1](#iterators--nope) Don't use iterators. Prefer JavaScript's higher-order functions instead of loops like `for-in` or `for-of`. eslint: [`no-iterator`](http://eslint.org/docs/rules/no-iterator.html) [`no-restricted-syntax`](http://eslint.org/docs/rules/no-restricted-syntax)
+  - [11.1](#iterators--nope) 不要使用迭代器，而是使用 JavaScript 的高价函数,以替代 `for-in` or `for-of`。 eslint: [`no-iterator`](http://eslint.org/docs/rules/no-iterator.html) [`no-restricted-syntax`](http://eslint.org/docs/rules/no-restricted-syntax)
 
-    > Why? This enforces our immutable rule. Dealing with pure functions that return values is easier to reason about than side effects.
+    > 为什么？这是我们不变的规则。Dealing with pure functions that return values is easier to reason about than side effects.
 
     > Use `map()` / `every()` / `filter()` / `find()` / `findIndex()` / `reduce()` / `some()` / ... to iterate over arrays, and `Object.keys()` / `Object.values()` / `Object.entries()` to produce arrays so you can iterate over objects.
 
@@ -1341,14 +1341,14 @@
     ```
 
   <a name="generators--nope"></a><a name="11.2"></a>
-  - [11.2](#generators--nope) Don't use generators for now.
+  - [11.2](#generators--nope) 现在这个时刻不要使用 generators.
 
-    > Why? They don't transpile well to ES5.
+    > 为什么？现在不能很好的转换为 ES5
 
   <a name="generators--spacing"></a>
-  - [11.3](#generators--spacing) If you must use generators, or if you disregard [our advice](#generators--nope), make sure their function signature is spaced properly. eslint: [`generator-star-spacing`](http://eslint.org/docs/rules/generator-star-spacing)
+  - [11.3](#generators--spacing) 如果你必须使用 generators ，或者忽视上一条规则 [our advice](#generators--nope), 确保使用正确的分隔。 eslint: [`generator-star-spacing`](http://eslint.org/docs/rules/generator-star-spacing)
 
-    > Why? `function` and `*` are part of the same conceptual keyword - `*` is not a modifier for `function`, `function*` is a unique construct, different from `function`.
+    > 为什么? `function` 和 `*`是同一个语法的一部分 `*` 不是 `function` 的修饰符, `function*` 是一个独特的结构, 跟 `function` 不同。
 
     ```js
     // bad
@@ -1389,13 +1389,13 @@
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 返回目录](#table-of-contents)**
 
 
 ## Properties
 
   <a name="properties--dot"></a><a name="12.1"></a>
-  - [12.1](#properties--dot) Use dot notation when accessing properties. eslint: [`dot-notation`](http://eslint.org/docs/rules/dot-notation.html) jscs: [`requireDotNotation`](http://jscs.info/rule/requireDotNotation)
+  - [12.1](#properties--dot) 使用 `.` 来访问属性。 eslint: [`dot-notation`](http://eslint.org/docs/rules/dot-notation.html) jscs: [`requireDotNotation`](http://jscs.info/rule/requireDotNotation)
 
     ```javascript
     const luke = {
@@ -1411,7 +1411,7 @@
     ```
 
   <a name="properties--bracket"></a><a name="12.2"></a>
-  - [12.2](#properties--bracket) Use bracket notation `[]` when accessing properties with a variable.
+  - [12.2](#properties--bracket) 当属性名是变量时，使用 `[]` 来访问。
 
     ```javascript
     const luke = {
@@ -1426,7 +1426,7 @@
     const isJedi = getProp('jedi');
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 返回目录](#table-of-contents)**
 
 
 ## Variables
@@ -1516,7 +1516,7 @@
     // good
     function checkName(hasName) {
       if (hasName === 'test') {
-        return false;
+        return false;`
       }
 
       const name = getName();
