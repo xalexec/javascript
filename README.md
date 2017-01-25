@@ -1429,10 +1429,10 @@
 **[⬆ 返回目录](#table-of-contents)**
 
 
-## Variables
+## 变量 Variables
 
   <a name="variables--const"></a><a name="13.1"></a>
-  - [13.1](#variables--const) Always use `const` to declare variables. Not doing so will result in global variables. We want to avoid polluting the global namespace. Captain Planet warned us of that. eslint: [`no-undef`](http://eslint.org/docs/rules/no-undef) [`prefer-const`](http://eslint.org/docs/rules/prefer-const)
+  - [13.1](#variables--const) 总是使用 `const` 声明变量. 不这么做会得到一个全局变量。我们要避免污染全局命名空间。 eslint: [`no-undef`](http://eslint.org/docs/rules/no-undef) [`prefer-const`](http://eslint.org/docs/rules/prefer-const)
 
     ```javascript
     // bad
@@ -1443,9 +1443,9 @@
     ```
 
   <a name="variables--one-const"></a><a name="13.2"></a>
-  - [13.2](#variables--one-const) Use one `const` declaration per variable. eslint: [`one-var`](http://eslint.org/docs/rules/one-var.html) jscs: [`disallowMultipleVarDecl`](http://jscs.info/rule/disallowMultipleVarDecl)
+  - [13.2](#variables--one-const) 每次使用 `const` 声明一个变量。 eslint: [`one-var`](http://eslint.org/docs/rules/one-var.html) jscs: [`disallowMultipleVarDecl`](http://jscs.info/rule/disallowMultipleVarDecl)
 
-    > Why? It's easier to add new variable declarations this way, and you never have to worry about swapping out a `;` for a `,` or introducing punctuation-only diffs. You can also step through each declaration with the debugger, instead of jumping through all of them at once.
+    > 为什么? 这样容易添加新的变量声明，你永远不用担心把 `;` 更换为 `,`，或者引入只有标点的 diffs。在调试时可以遍历每个变量声明，而不是一次跳过他们。
 
     ```javascript
     // bad
@@ -1466,9 +1466,9 @@
     ```
 
   <a name="variables--const-let-group"></a><a name="13.3"></a>
-  - [13.3](#variables--const-let-group) Group all your `const`s and then group all your `let`s.
+  - [13.3](#variables--const-let-group) 把所有的 `const` 和 `let` 分级放到一起。
 
-    > Why? This is helpful when later on you might need to assign a variable depending on one of the previous assigned variables.
+    > 为什么?这有助于之后声明变量依赖之前的声明。
 
     ```javascript
     // bad
@@ -1492,9 +1492,9 @@
     ```
 
   <a name="variables--define-where-used"></a><a name="13.4"></a>
-  - [13.4](#variables--define-where-used) Assign variables where you need them, but place them in a reasonable place.
+  - [13.4](#variables--define-where-used) 当你需要的时候分配变量，但是把他们放在合理的地方。
 
-    > Why? `let` and `const` are block scoped and not function scoped.
+    > 为什么? `let` 和 `const` 是块级作用域，不是函数作用域。
 
     ```javascript
     // bad - unnecessary function call
@@ -1530,9 +1530,10 @@
     }
     ```
   <a name="variables--no-chain-assignment"></a><a name="13.5"></a>
-  - [13.5](#variables--no-chain-assignment) Don't chain variable assignments.
 
-    > Why? Chaining variable assignments creates implicit global variables.
+  - [13.5](#variables--no-chain-assignment) 禁止链式声明变量.
+
+    > 为什么?链式声明会创建隐式的全局变量。
 
     ```javascript
     // bad
@@ -1563,9 +1564,10 @@
     ```
 
   <a name="variables--unary-increment-decrement"></a><a name="13.6"></a>
-  - [13.6](#variables--unary-increment-decrement) Avoid using unary increments and decrements (++, --). eslint [`no-plusplus`](http://eslint.org/docs/rules/no-plusplus)
 
-    > Why? Per the eslint documentation, unary increment and decrement statements are subject to automatic semicolon insertion and can cause silent errors with incrementing or decrementing values within an application. It is also more expressive to mutate your values with statements like `num += 1` instead of `num++` or `num ++`. Disallowing unary increment and decrement statements also prevents you from pre-incrementing/pre-decrementing values unintentionally which can also cause unexpected behavior in your programs.
+  - [13.6](#variables--unary-increment-decrement) 避免使用 ++, --。 eslint [`no-plusplus`](http://eslint.org/docs/rules/no-plusplus)
+
+    > 为什么? 在 eslint 文档中，一元操作符 ++ 和 -- 会受到自动插入分号的影响，还会导致无声的错误。使用 `num += 1` 代替 `num++` 或者 `num ++` 会更有表现力。禁止使用 ++ -- 还会避免你无意的增加减少值。
 
     ```javascript
       // bad
@@ -1596,7 +1598,7 @@
       const truthyCount = array.filter(Boolean).length;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 返回目录](#table-of-contents)**
 
 
 ## Hoisting
