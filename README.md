@@ -1601,30 +1601,27 @@
 **[⬆ 返回目录](#table-of-contents)**
 
 
-## Hoisting
+## 提升 Hoisting
 
   <a name="hoisting--about"></a><a name="14.1"></a>
   - [14.1](#hoisting--about) `var` declarations get hoisted to the top of their scope, their assignment does not. `const` and `let` declarations are blessed with a new concept called [Temporal Dead Zones (TDZ)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_dead_zone_and_errors_with_let). It's important to know why [typeof is no longer safe](http://es-discourse.com/t/why-typeof-is-no-longer-safe/15).
 
+  - [14.1](#hoisting--about) `var` 会把变量声明提升到作用域的顶部，初始化不会。`const` 和 `let` 声明有一个新名词叫作 [暂时性死区 Temporal Dead Zones (TDZ)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_dead_zone_and_errors_with_let). 这有助于理解为什么 typeof 不在是安全的。(http://es-discourse.com/t/why-typeof-is-no-longer-safe/15).
+
     ```javascript
-    // we know this wouldn't work (assuming there
-    // is no notDefined global variable)
+    // 我们知道这是不会正常工作的 (假设没有在全局作用域进行声明)
     function example() {
       console.log(notDefined); // => throws a ReferenceError
     }
 
-    // creating a variable declaration after you
-    // reference the variable will work due to
-    // variable hoisting. Note: the assignment
-    // value of `true` is not hoisted.
+    // 声明一个变量在使用他之后，变量的声明会提升
+    // 他的值 `true` 不会提升
     function example() {
       console.log(declaredButNotAssigned); // => undefined
       var declaredButNotAssigned = true;
     }
 
-    // the interpreter is hoisting the variable
-    // declaration to the top of the scope,
-    // which means our example could be rewritten as:
+    // 上面的例子和下面的一样
     function example() {
       let declaredButNotAssigned;
       console.log(declaredButNotAssigned); // => undefined
@@ -1640,7 +1637,7 @@
     ```
 
   <a name="hoisting--anon-expressions"></a><a name="14.2"></a>
-  - [14.2](#hoisting--anon-expressions) Anonymous function expressions hoist their variable name, but not the function assignment.
+  - [14.2](#hoisting--anon-expressions) 匿名函数会会提升他的直接量，但是不提升函数定义。
 
     ```javascript
     function example() {
@@ -1655,7 +1652,7 @@
     ```
 
   <a name="hoisting--named-expresions"></a><a name="14.3"></a>
-  - [14.3](#hoisting--named-expresions) Named function expressions hoist the variable name, not the function name or the function body.
+  - [14.3](#hoisting--named-expresions) 命名函数赋值给变量提升命名, 定义不会提升。
 
     ```javascript
     function example() {
@@ -1684,7 +1681,7 @@
     ```
 
   <a name="hoisting--declarations"></a><a name="14.4"></a>
-  - [14.4](#hoisting--declarations) Function declarations hoist their name and the function body.
+  - [14.4](#hoisting--declarations) Function 语句定义会提升变量和定义。
 
     ```javascript
     function example() {
@@ -1695,26 +1692,26 @@
       }
     }
     ```
+  - 查看更多 JavaScript 作用域和提升 [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting/) by [Ben Cherry](http://www.adequatelygood.com/).
 
-  - For more information refer to [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting/) by [Ben Cherry](http://www.adequatelygood.com/).
-
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 返回目录](#table-of-contents)**
 
 
-## Comparison Operators & Equality
+## 比较运算符 & 等号 Comparison Operators & Equality
 
   <a name="comparison--eqeqeq"></a><a name="15.1"></a>
-  - [15.1](#comparison--eqeqeq) Use `===` and `!==` over `==` and `!=`. eslint: [`eqeqeq`](http://eslint.org/docs/rules/eqeqeq.html)
+  - [15.1](#comparison--eqeqeq) 使用 `===` 和 `!==` 代替 `==` 和 `!=`. eslint: [`eqeqeq`](http://eslint.org/docs/rules/eqeqeq.html)
 
   <a name="comparison--if"></a><a name="15.2"></a>
-  - [15.2](#comparison--if) Conditional statements such as the `if` statement evaluate their expression using coercion with the `ToBoolean` abstract method and always follow these simple rules:
+  - [15.2](#comparison--if) 判断语句比如 `if` 强制使用 `ToBoolean` 来对比它们，并且并是遵守下面的规则：
 
-    + **Objects** evaluate to **true**
-    + **Undefined** evaluates to **false**
-    + **Null** evaluates to **false**
-    + **Booleans** evaluate to **the value of the boolean**
-    + **Numbers** evaluate to **false** if **+0, -0, or NaN**, otherwise **true**
-    + **Strings** evaluate to **false** if an empty string `''`, otherwise **true**
+  -
+    + **Objects** 转换为 **true**
+    + **Undefined** 转换为 **false**
+    + **Null** e转换为 **false**
+    + **Booleans** 转换为 **他的 boolean 值**
+    + **Numbers** if **+0, -0, or NaN** 转换为 **false**, 其它情况转换为 **true**
+    + **Strings** if an empty string `''` 转换为 **false** , 其它情况转换为 **true**
 
     ```javascript
     if ([0] && []) {
@@ -1724,7 +1721,7 @@
     ```
 
   <a name="comparison--shortcuts"></a><a name="15.3"></a>
-  - [15.3](#comparison--shortcuts) Use shortcuts for booleans, but explicit comparisons for strings and numbers.
+  - [15.3](#comparison--shortcuts) 对 booleans 使用简短语句，对字符串和数字使用显示比较。
 
     ```javascript
     // bad
@@ -1759,7 +1756,7 @@
     ```
 
   <a name="comparison--moreinfo"></a><a name="15.4"></a>
-  - [15.4](#comparison--moreinfo) For more information see [Truth Equality and JavaScript](https://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) by Angus Croll.
+  - [15.4](#comparison--moreinfo) 更多信息查看 [Truth Equality and JavaScript](https://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) by Angus Croll.
 
   <a name="comparison--switch-blocks"></a><a name="15.5"></a>
   - [15.5](#comparison--switch-blocks) Use braces to create blocks in `case` and `default` clauses that contain lexical declarations (e.g. `let`, `const`, `function`, and `class`).
