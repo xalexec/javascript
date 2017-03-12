@@ -1829,7 +1829,7 @@
     ```
 
   <a name="comparison--unneeded-ternary"></a><a name="15.7"></a>
-  - [15.7](#comparison--unneeded-ternary) Avoid unneeded ternary statements.
+  - [15.7](#comparison--unneeded-ternary) 避免不必要的三元运算。
 
     eslint rules: [`no-unneeded-ternary`](http://eslint.org/docs/rules/no-unneeded-ternary.html).
 
@@ -1845,13 +1845,13 @@
     const baz = !c;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 返回目录](#table-of-contents)**
 
 
-## Blocks
+## 块 Blocks
 
   <a name="blocks--braces"></a><a name="16.1"></a>
-  - [16.1](#blocks--braces) Use braces with all multi-line blocks.
+  - [16.1](#blocks--braces) 对多行代码使用大括号。
 
     ```javascript
     // bad
@@ -1876,7 +1876,7 @@
     ```
 
   <a name="blocks--cuddled-elses"></a><a name="16.2"></a>
-  - [16.2](#blocks--cuddled-elses) If you're using multi-line blocks with `if` and `else`, put `else` on the same line as your `if` block's closing brace. eslint: [`brace-style`](http://eslint.org/docs/rules/brace-style.html) jscs:  [`disallowNewlineBeforeBlockStatements`](http://jscs.info/rule/disallowNewlineBeforeBlockStatements)
+  - [16.2](#blocks--cuddled-elses) 如果 `if` 或者 `else` 语句中有多行，把 `else` 放在 `if` 结束大括号的后面。 eslint: [`brace-style`](http://eslint.org/docs/rules/brace-style.html) jscs:  [`disallowNewlineBeforeBlockStatements`](http://jscs.info/rule/disallowNewlineBeforeBlockStatements)
 
     ```javascript
     // bad
@@ -1898,13 +1898,14 @@
     ```
 
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 返回目录](#table-of-contents)**
 
 
-## Comments
+## 注释 Comments
 
   <a name="comments--multiline"></a><a name="17.1"></a>
   - [17.1](#comments--multiline) Use `/** ... */` for multi-line comments.
+  - [17.1](#comments--multiline) 多行注释使用 `/** ... */`。
 
     ```javascript
     // bad
@@ -1934,7 +1935,7 @@
     ```
 
   <a name="comments--singleline"></a><a name="17.2"></a>
-  - [17.2](#comments--singleline) Use `//` for single line comments. Place single line comments on a newline above the subject of the comment. Put an empty line before the comment unless it's on the first line of a block.
+  - [17.2](#comments--singleline) 单行注释，使用 `//`。单行注释放在所注释内容上方单独的新行中，注释上面空一行，除了注释是块中的第一行的情况下。
 
     ```javascript
     // bad
@@ -1972,7 +1973,7 @@
     }
     ```
 
-  - [17.3](#comments--spaces) Start all comments with a space to make it easier to read. eslint: [`spaced-comment`](http://eslint.org/docs/rules/spaced-comment)
+  - [17.3](#comments--spaces) 在注释开头使用空格以使注释易于阅读。 eslint: [`spaced-comment`](http://eslint.org/docs/rules/spaced-comment)
 
     ```javascript
     // bad
@@ -2009,7 +2010,7 @@
     ```
 
   <a name="comments--actionitems"></a><a name="17.3"></a>
-  - [17.4](#comments--actionitems) Prefixing your comments with `FIXME` or `TODO` helps other developers quickly understand if you're pointing out a problem that needs to be revisited, or if you're suggesting a solution to the problem that needs to be implemented. These are different than regular comments because they are actionable. The actions are `FIXME: -- need to figure this out` or `TODO: -- need to implement`.
+  - [17.4](#comments--actionitems) 使用 `FIXME` 或者 `TODO` 来让其它开发者理解代码有问题需要被解决，或者你有解决方案需要被实现。这与普通注释不同，因为它们是能付诸实施，`FIXME: -- 需要修复` or `TODO: -- 需要实现`.
 
   <a name="comments--fixme"></a><a name="17.4"></a>
   - [17.5](#comments--fixme) Use `// FIXME:` to annotate problems.
@@ -2042,10 +2043,10 @@
 **[⬆ back to top](#table-of-contents)**
 
 
-## Whitespace
+## 空白 Whitespace
 
   <a name="whitespace--spaces"></a><a name="18.1"></a>
-  - [18.1](#whitespace--spaces) Use soft tabs set to 2 spaces. eslint: [`indent`](http://eslint.org/docs/rules/indent.html) jscs: [`validateIndentation`](http://jscs.info/rule/validateIndentation)
+  - [18.1](#whitespace--spaces) 把 tabs 设置为两个空格。 eslint: [`indent`](http://eslint.org/docs/rules/indent.html) jscs: [`validateIndentation`](http://jscs.info/rule/validateIndentation)
 
     ```javascript
     // bad
@@ -2065,7 +2066,7 @@
     ```
 
   <a name="whitespace--before-blocks"></a><a name="18.2"></a>
-  - [18.2](#whitespace--before-blocks) Place 1 space before the leading brace. eslint: [`space-before-blocks`](http://eslint.org/docs/rules/space-before-blocks.html) jscs: [`requireSpaceBeforeBlockStatements`](http://jscs.info/rule/requireSpaceBeforeBlockStatements)
+  - [18.2](#whitespace--before-blocks) 在大括号前填加一个空格。 eslint: [`space-before-blocks`](http://eslint.org/docs/rules/space-before-blocks.html) jscs: [`requireSpaceBeforeBlockStatements`](http://jscs.info/rule/requireSpaceBeforeBlockStatements)
 
     ```javascript
     // bad
@@ -2092,7 +2093,7 @@
     ```
 
   <a name="whitespace--around-keywords"></a><a name="18.3"></a>
-  - [18.3](#whitespace--around-keywords) Place 1 space before the opening parenthesis in control statements (`if`, `while` etc.). Place no space between the argument list and the function name in function calls and declarations. eslint: [`keyword-spacing`](http://eslint.org/docs/rules/keyword-spacing.html) jscs: [`requireSpaceAfterKeywords`](http://jscs.info/rule/requireSpaceAfterKeywords)
+  - [18.3](#whitespace--around-keywords) 在 (`if`, `while` 等) 的圆括号前填加一个空格，方法名和方法参数圆括号之间不要填加空格。 eslint: [`keyword-spacing`](http://eslint.org/docs/rules/keyword-spacing.html) jscs: [`requireSpaceAfterKeywords`](http://jscs.info/rule/requireSpaceAfterKeywords)
 
     ```javascript
     // bad
@@ -2117,7 +2118,7 @@
     ```
 
   <a name="whitespace--infix-ops"></a><a name="18.4"></a>
-  - [18.4](#whitespace--infix-ops) Set off operators with spaces. eslint: [`space-infix-ops`](http://eslint.org/docs/rules/space-infix-ops.html) jscs: [`requireSpaceBeforeBinaryOperators`](http://jscs.info/rule/requireSpaceBeforeBinaryOperators), [`requireSpaceAfterBinaryOperators`](http://jscs.info/rule/requireSpaceAfterBinaryOperators)
+  - [18.4](#whitespace--infix-ops) 在操作符和操作数之间填加空格。 eslint: [`space-infix-ops`](http://eslint.org/docs/rules/space-infix-ops.html) jscs: [`requireSpaceBeforeBinaryOperators`](http://jscs.info/rule/requireSpaceBeforeBinaryOperators), [`requireSpaceAfterBinaryOperators`](http://jscs.info/rule/requireSpaceAfterBinaryOperators)
 
     ```javascript
     // bad
@@ -2128,7 +2129,7 @@
     ```
 
   <a name="whitespace--newline-at-end"></a><a name="18.5"></a>
-  - [18.5](#whitespace--newline-at-end) End files with a single newline character. eslint: [`eol-last`](https://github.com/eslint/eslint/blob/master/docs/rules/eol-last.md)
+  - [18.5](#whitespace--newline-at-end) 文件结尾使用单个换行。 eslint: [`eol-last`](https://github.com/eslint/eslint/blob/master/docs/rules/eol-last.md)
 
     ```javascript
     // bad
