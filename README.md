@@ -253,9 +253,10 @@
     ```
 
   <a name="objects--quoted-props"></a><a name="3.8"></a>
+
   - [3.6](#objects--quoted-props) 只有在属性名不合法时使用引号。 eslint: [`quote-props`](http://eslint.org/docs/rules/quote-props.html) jscs: [`disallowQuotedKeysInObjects`](http://jscs.info/rule/disallowQuotedKeysInObjects)
 
-    > 为什么？一般来说这样更容易阅读，可以代码高亮，也更容易被 JS 引擎优化。
+    > Why? In general we consider it subjectively easier to read. It improves syntax highlighting, and is also more easily optimized by many JS engines.
 
     ```javascript
     // bad
@@ -289,7 +290,7 @@
     const has = Object.prototype.hasOwnProperty; // cache the lookup once, in module scope.
     /* or */
     import has from 'has';
-    …
+    // ...
     console.log(has.call(object, key));
     ```
 
@@ -576,21 +577,25 @@
 ## 函数 Functions
 
   <a name="functions--declarations"></a><a name="7.1"></a>
-  - [7.1](#functions--declarations) 使用函数表达式代替函数声明。 eslint: [`func-style`](http://eslint.org/docs/rules/func-style) jscs: [`requireFunctionDeclarations`](http://jscs.info/rule/requireFunctionDeclarations)
+
+  - [7.1](#functions--declarations) 使用函数表达式代替函数声明。 eslint: [`func-style`](http://eslint.org/docs/rules/func-style) jscs: [`disallowFunctionDeclarations`](http://jscs.info/rule/disallowFunctionDeclarations)
 
     > 为什么？函数声明具有提升作用，这意味着可以在文件中定义前就可以引用（使用），这有损可读性和可维护性。好果你发现函数定义太庞大太复杂，影响了你对文件中其它内容的理解，这意味着你应该将它提取成模块！不要忘记命名函数，匿明函数在产生 bug 时很难定位。
 
     ```javascript
     // bad
-    const foo = function () {
-    };
+    function foo() {
+      // ...
+    }
 
     // bad
-    function foo() {
-    }
+    const foo = function () {
+      // ...
+    };
 
     // good
     const foo = function bar() {
+      // ...
     };
     ```
 
@@ -634,13 +639,13 @@
 
     ```javascript
     // bad
-    function nope(name, options, arguments) {
-      // ...stuff...
+    function foo(name, options, arguments) {
+      // ...
     }
 
     // good
-    function yup(name, options, args) {
-      // ...stuff...
+    function foo(name, options, args) {
+      // ...
     }
     ```
 
@@ -761,12 +766,12 @@
     // bad
     function f1(obj) {
       obj.key = 1;
-    };
+    }
 
     // good
     function f2(obj) {
       const key = Object.prototype.hasOwnProperty.call(obj, 'key') ? obj.key : 1;
-    };
+    }
     ```
 
   <a name="functions--reassign-params"></a><a name="7.13"></a>
@@ -778,18 +783,22 @@
     // bad
     function f1(a) {
       a = 1;
+      // ...
     }
 
     function f2(a) {
       if (!a) { a = 1; }
+      // ...
     }
 
     // good
     function f3(a) {
       const b = a || 1;
+      // ...
     }
 
     function f4(a = 1) {
+      // ...
     }
     ```
 
@@ -808,10 +817,10 @@
     console.log(...x);
 
     // bad
-    new (Function.prototype.bind.apply(Date, [null, 2016, 08, 05]));
+    new (Function.prototype.bind.apply(Date, [null, 2016, 8, 5]));
 
     // good
-    new Date(...[2016, 08, 05]);
+    new Date(...[2016, 8, 5]);
     ```
 
   <a name="functions--signature-invocation-indentation"></a>
@@ -822,7 +831,7 @@
     function foo(bar,
                  baz,
                  quux) {
-      // body
+      // ...
     }
 
     // good
@@ -831,7 +840,7 @@
       baz,
       quux,
     ) {
-      // body
+      // ...
     }
 
     // bad
@@ -895,7 +904,7 @@
 
     // good
     [1, 2, 3].map((number, index) => ({
-      [index]: number
+      [index]: number,
     }));
     ```
 
@@ -904,11 +913,11 @@
 
     > 为什么？这要可以清楚的展示函数的边界。
 
-    ```js
+    ```javascript
     // bad
     ['get', 'post', 'put'].map(httpMethod => Object.prototype.hasOwnProperty.call(
         httpMagicObjectWithAVeryLongName,
-        httpMethod
+        httpMethod,
       )
     );
 
@@ -916,17 +925,18 @@
     ['get', 'post', 'put'].map(httpMethod => (
       Object.prototype.hasOwnProperty.call(
         httpMagicObjectWithAVeryLongName,
-        httpMethod
+        httpMethod,
       )
     ));
     ```
 
   <a name="arrows--one-arg-parens"></a><a name="8.4"></a>
-  - [8.4](#arrows--one-arg-parens) 如果你的函数只有一个参数也不使用大括号，省略括号。其它情况使用括号包裹参数。 eslint: [`arrow-parens`](http://eslint.org/docs/rules/arrow-parens.html) jscs:  [`disallowParenthesesAroundArrowParam`](http://jscs.info/rule/disallowParenthesesAroundArrowParam)
+
+  - [8.4](#arrows--one-arg-parens) 如果你的函数只有一个参数也不使用大括号，可以省略括号。其它情况使用括号包裹参数。 Note: it is also acceptable to always use parentheses, in which case use the ["always" option](http://eslint.org/docs/rules/arrow-parens#always) for eslint or do not include [`disallowParenthesesAroundArrowParam`](http://jscs.info/rule/disallowParenthesesAroundArrowParam) for jscs. eslint: [`arrow-parens`](http://eslint.org/docs/rules/arrow-parens.html) jscs:  [`disallowParenthesesAroundArrowParam`](http://jscs.info/rule/disallowParenthesesAroundArrowParam)
 
     > 为什么? 更清晰。
 
-    ```js
+    ```javascript
     // bad
     [1, 2, 3].map((x) => x * x);
 
@@ -954,7 +964,7 @@
   <a name="arrows--confusing"></a><a name="8.5"></a>
   - [8.5](#arrows--confusing) 避免混淆箭头函数语法 (`=>`) 与比较运算符 (`<=`, `>=`)。 eslint: [`no-confusing-arrow`](http://eslint.org/docs/rules/no-confusing-arrow)
 
-    ```js
+    ```javascript
     // bad
     const itemHeight = item => item.height > 256 ? item.largeSize : item.smallSize;
 
@@ -1019,13 +1029,13 @@
     }
     inherits(PeekableQueue, Queue);
     PeekableQueue.prototype.peek = function () {
-      return this._queue[0];
-    }
+      return this.queue[0];
+    };
 
     // good
     class PeekableQueue extends Queue {
       peek() {
-        return this._queue[0];
+        return this.queue[0];
       }
     }
     ```
@@ -1222,11 +1232,11 @@
     ```javascript
     // bad
     let foo = 3;
-    export { foo }
+    export { foo };
 
     // good
     const foo = 3;
-    export { foo }
+    export { foo };
     ```
 
   <a name="modules--prefer-default-export"></a>
@@ -1329,12 +1339,12 @@
     // bad
     const increasedByOne = [];
     for (let i = 0; i < numbers.length; i++) {
-      modified.push(numbers[i] + 1);
+      increasedByOne.push(numbers[i] + 1);
     }
 
     // good
     const increasedByOne = [];
-    numbers.forEach(num => modified.push(num + 1));
+    numbers.forEach(num => increasedByOne.push(num + 1));
 
     // best (keeping it functional)
     const increasedByOne = numbers.map(num => num + 1);
@@ -1350,43 +1360,60 @@
 
     > 为什么? `function` 和 `*`是同一个语法的一部分 `*` 不是 `function` 的修饰符, `function*` 是一个独特的结构, 跟 `function` 不同。
 
-    ```js
+    ```javascript
     // bad
     function * foo() {
+      // ...
     }
 
+    // bad
     const bar = function * () {
-    }
+      // ...
+    };
 
+    // bad
     const baz = function *() {
-    }
+      // ...
+    };
 
+    // bad
     const quux = function*() {
-    }
+      // ...
+    };
 
+    // bad
     function*foo() {
+      // ...
     }
 
+    // bad
     function *foo() {
+      // ...
     }
 
     // very bad
     function
     *
     foo() {
+      // ...
     }
 
+    // very bad
     const wat = function
     *
     () {
-    }
+      // ...
+    };
 
     // good
     function* foo() {
+      // ...
     }
 
+    // good
     const foo = function* () {
-    }
+      // ...
+    };
     ```
 
 **[⬆ 返回目录](#table-of-contents)**
@@ -1570,32 +1597,32 @@
     > 为什么? 在 eslint 文档中，一元操作符 ++ 和 -- 会受到自动插入分号的影响，还会导致无声的错误。使用 `num += 1` 代替 `num++` 或者 `num ++` 会更有表现力。禁止使用 ++ -- 还会避免你无意的增加减少值。
 
     ```javascript
-      // bad
+    // bad
 
-      let array = [1, 2, 3];
-      let num = 1;
-      num++;
-      --num;
+    const array = [1, 2, 3];
+    let num = 1;
+    num++;
+    --num;
 
-      let sum = 0;
-      let truthyCount = 0;
-      for(let i = 0; i < array.length; i++){
-        let value = array[i];
-        sum += value;
-        if (value) {
-          truthyCount++;
-        }
+    let sum = 0;
+    let truthyCount = 0;
+    for (let i = 0; i < array.length; i++) {
+      let value = array[i];
+      sum += value;
+      if (value) {
+        truthyCount++;
       }
+    }
 
-      // good
+    // good
 
-      let array = [1, 2, 3];
-      let num = 1;
-      num += 1;
-      num -= 1;
+    const array = [1, 2, 3];
+    let num = 1;
+    num += 1;
+    num -= 1;
 
-      const sum = array.reduce((a, b) => a + b, 0);
-      const truthyCount = array.filter(Boolean).length;
+    const sum = array.reduce((a, b) => a + b, 0);
+    const truthyCount = array.filter(Boolean).length;
     ```
 
 **[⬆ 返回目录](#table-of-contents)**
@@ -1676,7 +1703,7 @@
 
       var named = function named() {
         console.log('named');
-      }
+      };
     }
     ```
 
@@ -1726,32 +1753,32 @@
     ```javascript
     // bad
     if (isValid === true) {
-      // ...stuff...
+      // ...
     }
 
     // good
     if (isValid) {
-      // ...stuff...
+      // ...
     }
 
     // bad
     if (name) {
-      // ...stuff...
+      // ...
     }
 
     // good
     if (name !== '') {
-      // ...stuff...
+      // ...
     }
 
     // bad
     if (collection.length) {
-      // ...stuff...
+      // ...
     }
 
     // good
     if (collection.length > 0) {
-      // ...stuff...
+      // ...
     }
     ```
 
@@ -1761,9 +1788,9 @@
   <a name="comparison--switch-blocks"></a><a name="15.5"></a>
   - [15.5](#comparison--switch-blocks) Use braces to create blocks in `case` and `default` clauses that contain lexical declarations (e.g. `let`, `const`, `function`, and `class`).
 
-  > Why? Lexical declarations are visible in the entire `switch` block but only get initialized when assigned, which only happens when its `case` is reached. This causes problems when multiple `case` clauses attempt to define the same thing.
+    > Why? Lexical declarations are visible in the entire `switch` block but only get initialized when assigned, which only happens when its `case` is reached. This causes problems when multiple `case` clauses attempt to define the same thing.
 
-  eslint rules: [`no-case-declarations`](http://eslint.org/docs/rules/no-case-declarations.html).
+    eslint rules: [`no-case-declarations`](http://eslint.org/docs/rules/no-case-declarations.html).
 
     ```javascript
     // bad
@@ -1775,7 +1802,9 @@
         const y = 2;
         break;
       case 3:
-        function f() {}
+        function f() {
+          // ...
+        }
         break;
       default:
         class C {}
@@ -1792,7 +1821,9 @@
         break;
       }
       case 3: {
-        function f() {}
+        function f() {
+          // ...
+        }
         break;
       }
       case 4:
@@ -1916,7 +1947,7 @@
     // @return {Element} element
     function make(tag) {
 
-      // ...stuff...
+      // ...
 
       return element;
     }
@@ -1928,7 +1959,7 @@
      */
     function make(tag) {
 
-      // ...stuff...
+      // ...
 
       return element;
     }
@@ -1949,7 +1980,7 @@
     function getType() {
       console.log('fetching type...');
       // set the default type to 'no type'
-      const type = this._type || 'no type';
+      const type = this.type || 'no type';
 
       return type;
     }
@@ -1959,7 +1990,7 @@
       console.log('fetching type...');
 
       // set the default type to 'no type'
-      const type = this._type || 'no type';
+      const type = this.type || 'no type';
 
       return type;
     }
@@ -1967,7 +1998,7 @@
     // also good
     function getType() {
       // set the default type to 'no type'
-      const type = this._type || 'no type';
+      const type = this.type || 'no type';
 
       return type;
     }
@@ -1991,7 +2022,7 @@
      */
     function make(tag) {
 
-      // ...stuff...
+      // ...
 
       return element;
     }
@@ -2003,7 +2034,7 @@
      */
     function make(tag) {
 
-      // ...stuff...
+      // ...
 
       return element;
     }
@@ -2046,22 +2077,24 @@
 ## 空白 Whitespace
 
   <a name="whitespace--spaces"></a><a name="18.1"></a>
+
   - [18.1](#whitespace--spaces) 把 tabs 设置为两个空格。 eslint: [`indent`](http://eslint.org/docs/rules/indent.html) jscs: [`validateIndentation`](http://jscs.info/rule/validateIndentation)
+>>>>>>> master
 
     ```javascript
     // bad
     function foo() {
-    ∙∙∙∙const name;
+    ∙∙∙∙let name;
     }
 
     // bad
     function bar() {
-    ∙const name;
+    ∙let name;
     }
 
     // good
     function baz() {
-    ∙∙const name;
+    ∙∙let name;
     }
     ```
 
@@ -2180,7 +2213,7 @@
     // bad
     const leds = stage.selectAll('.led').data(data).enter().append('svg:svg').classed('led', true)
         .attr('width', (radius + margin) * 2).append('svg:g')
-        .attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
+        .attr('transform', `translate(${radius + margin},${radius + margin})`)
         .call(tron.led);
 
     // good
@@ -2190,7 +2223,7 @@
         .classed('led', true)
         .attr('width', (radius + margin) * 2)
       .append('svg:g')
-        .attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
+        .attr('transform', `translate(${radius + margin},${radius + margin})`)
         .call(tron.led);
 
     // good
@@ -2499,7 +2532,7 @@
       lastName,
       inventorOf,
       ...heroArgs
-    )
+    );
     ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -2524,10 +2557,10 @@
     }());
 
     // good, but legacy (guards against the function becoming an argument when two files with IIFEs are concatenated)
-    ;(() => {
+    ;((() => {
       const name = 'Skywalker';
       return name;
-    }());
+    })());
     ```
 
     [Read more](https://stackoverflow.com/questions/7365172/semicolon-before-self-invoking-function/7365214%237365214).
@@ -2598,9 +2631,9 @@
   - [21.5](#coercion--bitwise) **Note:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](https://es5.github.io/#x4.3.19), but bitshift operations always return a 32-bit integer ([source](https://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/airbnb/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
 
     ```javascript
-    2147483647 >> 0 //=> 2147483647
-    2147483648 >> 0 //=> -2147483648
-    2147483649 >> 0 //=> -2147483647
+    2147483647 >> 0; // => 2147483647
+    2147483648 >> 0; // => -2147483648
+    2147483649 >> 0; // => -2147483647
     ```
 
   <a name="coercion--booleans"></a><a name="21.6"></a>
@@ -2630,12 +2663,12 @@
     ```javascript
     // bad
     function q() {
-      // ...stuff...
+      // ...
     }
 
     // good
     function query() {
-      // ..stuff..
+      // ...
     }
     ```
 
@@ -2762,6 +2795,7 @@
 
     ```javascript
     function makeStyleGuide() {
+      // ...
     }
 
     export default makeStyleGuide;
@@ -2773,7 +2807,7 @@
     ```javascript
     const AirbnbStyleGuide = {
       es6: {
-      }
+      },
     };
 
     export default AirbnbStyleGuide;
@@ -2892,7 +2926,7 @@
     // bad
     $(this).trigger('listingUpdated', listing.id);
 
-    ...
+    // ...
 
     $(this).on('listingUpdated', (e, listingId) => {
       // do something with listingId
@@ -2905,7 +2939,7 @@
     // good
     $(this).trigger('listingUpdated', { listingId: listing.id });
 
-    ...
+    // ...
 
     $(this).on('listingUpdated', (e, data) => {
       // do something with data.listingId
@@ -2939,10 +2973,10 @@
     function setSidebar() {
       $('.sidebar').hide();
 
-      // ...stuff...
+      // ...
 
       $('.sidebar').css({
-        'background-color': 'pink'
+        'background-color': 'pink',
       });
     }
 
@@ -2951,10 +2985,10 @@
       const $sidebar = $('.sidebar');
       $sidebar.hide();
 
-      // ...stuff...
+      // ...
 
       $sidebar.css({
-        'background-color': 'pink'
+        'background-color': 'pink',
       });
     }
     ```
@@ -3075,7 +3109,8 @@
   - Code Style Linters
     + [ESlint](http://eslint.org/) - [Airbnb Style .eslintrc](https://github.com/airbnb/javascript/blob/master/linters/.eslintrc)
     + [JSHint](http://jshint.com/) - [Airbnb Style .jshintrc](https://github.com/airbnb/javascript/blob/master/linters/.jshintrc)
-    + [JSCS](https://github.com/jscs-dev/node-jscs) - [Airbnb Style Preset](https://github.com/jscs-dev/node-jscs/blob/master/presets/airbnb.json)
+    + [JSCS](https://github.com/jscs-dev/node-jscs) - [Airbnb Style Preset](https://github.com/jscs-dev/node-jscs/blob/master/presets/airbnb.json) (Deprecated, please use [ESlint](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base))
+  - Neutrino preset - [neutrino-preset-airbnb-base](https://neutrino.js.org/presets/neutrino-preset-airbnb-base/)
 
 **Other Style Guides**
 
@@ -3142,6 +3177,7 @@
 
   This is a list of organizations that are using this style guide. Send us a pull request and we'll add you to the list.
 
+  - **3blades**: [3Blades/javascript](https://github.com/3blades/javascript)
   - **4Catalyzer**: [4Catalyzer/javascript](https://github.com/4Catalyzer/javascript)
   - **Aan Zee**: [AanZee/javascript](https://github.com/AanZee/javascript)
   - **Adult Swim**: [adult-swim/javascript](https://github.com/adult-swim/javascript)
@@ -3150,11 +3186,12 @@
   - **Ascribe**: [ascribe/javascript](https://github.com/ascribe/javascript)
   - **Avalara**: [avalara/javascript](https://github.com/avalara/javascript)
   - **Avant**: [avantcredit/javascript](https://github.com/avantcredit/javascript)
+  - **BashPros**: [BashPros/javascript](https://github.com/BashPros/javascript)
   - **Billabong**: [billabong/javascript](https://github.com/billabong/javascript)
   - **Bisk**: [bisk/javascript](https://github.com/Bisk/javascript/)
-  - **Blendle**: [blendle/javascript](https://github.com/blendle/javascript)
   - **Bonhomme**: [bonhommeparis/javascript](https://github.com/bonhommeparis/javascript)
   - **Brainshark**: [brainshark/javascript](https://github.com/brainshark/javascript)
+  - **CaseNine**: [CaseNine/javascript](https://github.com/CaseNine/javascript)
   - **Chartboost**: [ChartBoost/javascript-style-guide](https://github.com/ChartBoost/javascript-style-guide)
   - **ComparaOnline**: [comparaonline/javascript](https://github.com/comparaonline/javascript-style-guide)
   - **Compass Learning**: [compasslearning/javascript-style-guide](https://github.com/compasslearning/javascript-style-guide)
@@ -3172,12 +3209,11 @@
   - **General Electric**: [GeneralElectric/javascript](https://github.com/GeneralElectric/javascript)
   - **GoodData**: [gooddata/gdc-js-style](https://github.com/gooddata/gdc-js-style)
   - **Grooveshark**: [grooveshark/javascript](https://github.com/grooveshark/javascript)
+  - **Honey**: [honeyscience/javascript](https://github.com/honeyscience/javascript)
   - **How About We**: [howaboutwe/javascript](https://github.com/howaboutwe/javascript-style-guide)
   - **Huballin**: [huballin/javascript](https://github.com/huballin/javascript)
   - **HubSpot**: [HubSpot/javascript](https://github.com/HubSpot/javascript)
   - **Hyper**: [hyperoslo/javascript-playbook](https://github.com/hyperoslo/javascript-playbook/blob/master/style.md)
-  - **InfoJobs**: [InfoJobs/JavaScript-Style-Guide](https://github.com/InfoJobs/JavaScript-Style-Guide)
-  - **Intent Media**: [intentmedia/javascript](https://github.com/intentmedia/javascript)
   - **Jam3**: [Jam3/Javascript-Code-Conventions](https://github.com/Jam3/Javascript-Code-Conventions)
   - **JeopardyBot**: [kesne/jeopardy-bot](https://github.com/kesne/jeopardy-bot/blob/master/STYLEGUIDE.md)
   - **JSSolutions**: [JSSolutions/javascript](https://github.com/JSSolutions/javascript)
@@ -3192,7 +3228,6 @@
   - **Money Advice Service**: [moneyadviceservice/javascript](https://github.com/moneyadviceservice/javascript)
   - **Muber**: [muber/javascript](https://github.com/muber/javascript)
   - **National Geographic**: [natgeo/javascript](https://github.com/natgeo/javascript)
-  - **National Park Service**: [nationalparkservice/javascript](https://github.com/nationalparkservice/javascript)
   - **Nimbl3**: [nimbl3/javascript](https://github.com/nimbl3/javascript)
   - **Nulogy**: [nulogy/javascript](https://github.com/nulogy/javascript)
   - **Orion Health**: [orionhealth/javascript](https://github.com/orionhealth/javascript)
@@ -3200,7 +3235,7 @@
   - **Peerby**: [Peerby/javascript](https://github.com/Peerby/javascript)
   - **Razorfish**: [razorfish/javascript-style-guide](https://github.com/razorfish/javascript-style-guide)
   - **reddit**: [reddit/styleguide/javascript](https://github.com/reddit/styleguide/tree/master/javascript)
-  - **React**: [/facebook/react/blob/master/CONTRIBUTING.md#style-guide](https://github.com/facebook/react/blob/master/CONTRIBUTING.md#style-guide)
+  - **React**: [facebook.github.io/react/contributing/how-to-contribute.html#style-guide](https://facebook.github.io/react/contributing/how-to-contribute.html#style-guide)
   - **REI**: [reidev/js-style-guide](https://github.com/rei/code-style-guides/blob/master/docs/javascript.md)
   - **Ripple**: [ripple/javascript-style-guide](https://github.com/ripple/javascript-style-guide)
   - **SeekingAlpha**: [seekingalpha/javascript-style-guide](https://github.com/seekingalpha/javascript-style-guide)
@@ -3209,6 +3244,7 @@
   - **StratoDem Analytics**: [stratodem/javascript](https://github.com/stratodem/javascript)
   - **SteelKiwi Development**: [steelkiwi/javascript](https://github.com/steelkiwi/javascript)
   - **StudentSphere**: [studentsphere/javascript](https://github.com/studentsphere/guide-javascript)
+  - **SwoopApp**: [swoopapp/javascript](https://github.com/swoopapp/javascript)
   - **SysGarage**: [sysgarage/javascript-style-guide](https://github.com/sysgarage/javascript-style-guide)
   - **Syzygy Warsaw**: [syzygypl/javascript](https://github.com/syzygypl/javascript)
   - **Target**: [target/javascript](https://github.com/target/javascript)
@@ -3238,10 +3274,10 @@
   - ![jp](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japanese**: [mitsuruog/javascript-style-guide](https://github.com/mitsuruog/javascript-style-guide)
   - ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [tipjs/javascript-style-guide](https://github.com/tipjs/javascript-style-guide)
   - ![pl](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Poland.png) **Polish**: [mjurczyk/javascript](https://github.com/mjurczyk/javascript)
-  - ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**: [uprock/javascript](https://github.com/uprock/javascript)
+  - ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**: [leonidlebedev/javascript-airbnb](https://github.com/leonidlebedev/javascript-airbnb)
   - ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Spain.png) **Spanish**: [paolocarrasco/javascript-style-guide](https://github.com/paolocarrasco/javascript-style-guide)
   - ![th](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Thailand.png) **Thai**: [lvarayut/javascript-style-guide](https://github.com/lvarayut/javascript-style-guide)
-  - ![vn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnam**: [giangpii/javascript-style-guide](https://github.com/giangpii/javascript-style-guide)
+  - ![vn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnam**: [hngiang/javascript-style-guide](https://github.com/hngiang/javascript-style-guide)
 
 ## The JavaScript Style Guide Guide
 
@@ -3260,7 +3296,7 @@
 
 (The MIT License)
 
-Copyright (c) 2014-2016 Airbnb
+Copyright (c) 2014-2017 Airbnb
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
