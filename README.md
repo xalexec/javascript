@@ -2400,10 +2400,10 @@
 
 **[⬆ 返回目录](#table-of-contents)**
 
-## Commas
+## 逗号 Commas
 
 <a name="commas--leading-trailing"></a><a name="19.1"></a>
-  - [19.1](#commas--leading-trailing) Leading commas: **Nope.** eslint: [`comma-style`](http://eslint.org/docs/rules/comma-style.html) jscs: [`requireCommaBeforeLineBreak`](http://jscs.info/rule/requireCommaBeforeLineBreak)
+  - [19.1](#commas--leading-trailing) 开头的逗号: **Nope.** eslint: [`comma-style`](http://eslint.org/docs/rules/comma-style.html) jscs: [`requireCommaBeforeLineBreak`](http://jscs.info/rule/requireCommaBeforeLineBreak)
 
     ```javascript
     // bad
@@ -2438,9 +2438,9 @@
     ```
 
   <a name="commas--dangling"></a><a name="19.2"></a>
-  - [19.2](#commas--dangling) Additional trailing comma: **Yup.** eslint: [`comma-dangle`](http://eslint.org/docs/rules/comma-dangle.html) jscs: [`requireTrailingComma`](http://jscs.info/rule/requireTrailingComma)
+  - [19.2](#commas--dangling) 额外的逗号: **Yup.** eslint: [`comma-dangle`](http://eslint.org/docs/rules/comma-dangle.html) jscs: [`requireTrailingComma`](http://jscs.info/rule/requireTrailingComma)
 
-    > Why? This leads to cleaner git diffs. Also, transpilers like Babel will remove the additional trailing comma in the transpiled code which means you don't have to worry about the [trailing comma problem](https://github.com/airbnb/javascript/blob/es5-deprecated/es5/README.md#commas) in legacy browsers.
+    > 为什么？为了方便 git diffs。同时，转换工具像 Babel 等会删除额外的逗号，这意味着你不用担心在低版本的浏览器中额外的逗号导致问题。[trailing comma problem](https://github.com/airbnb/javascript/blob/es5-deprecated/es5/README.md#commas)
 
     ```diff
     // bad - git diff without trailing comma
@@ -2533,10 +2533,10 @@
     );
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 返回目录](#table-of-contents)**
 
 
-## Semicolons
+## 分号 Semicolons
 
   <a name="semicolons--required"></a><a name="20.1"></a>
   - [20.1](#20.1) **Yup.** eslint: [`semi`](http://eslint.org/docs/rules/semi.html) jscs: [`requireSemicolons`](http://jscs.info/rule/requireSemicolons)
@@ -2563,13 +2563,13 @@
 
     [Read more](https://stackoverflow.com/questions/7365172/semicolon-before-self-invoking-function/7365214%237365214).
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 返回目录](#table-of-contents)**
 
 
-## Type Casting & Coercion
+## 类型转换 Type Casting & Coercion
 
   <a name="coercion--explicit"></a><a name="21.1"></a>
-  - [21.1](#coercion--explicit) Perform type coercion at the beginning of the statement.
+  - [21.1](#coercion--explicit) 在语句开始的时候执行类型转换。
 
   <a name="coercion--strings"></a><a name="21.2"></a>
   - [21.2](#coercion--strings)  Strings:
@@ -2588,7 +2588,7 @@
     ```
 
   <a name="coercion--numbers"></a><a name="21.3"></a>
-  - [21.3](#coercion--numbers) Numbers: Use `Number` for type casting and `parseInt` always with a radix for parsing strings. eslint: [`radix`](http://eslint.org/docs/rules/radix)
+  - [21.3](#coercion--numbers) Numbers: 使用 `Number` 和带基数的 `parseInt` 进行 String 转 Number 类型。eslint: [`radix`](http://eslint.org/docs/rules/radix)
 
     ```javascript
     const inputValue = '4';
@@ -2613,7 +2613,7 @@
     ```
 
   <a name="coercion--comment-deviations"></a><a name="21.4"></a>
-  - [21.4](#coercion--comment-deviations) If for whatever reason you are doing something wild and `parseInt` is your bottleneck and need to use Bitshift for [performance reasons](https://jsperf.com/coercion-vs-casting/3), leave a comment explaining why and what you're doing.
+  - [21.4](#coercion--comment-deviations) 如果你在做一些事情，`parseInt` 成为了瓶颈，你需要什么位移来改善性能，请写清楚相关注释 [performance reasons](https://jsperf.com/coercion-vs-casting/3)。 [performance reasons](https://jsperf.com/coercion-vs-casting/3), leave a comment explaining why and what you're doing.
 
     ```javascript
     // good
@@ -2650,7 +2650,7 @@
     const hasAge = !!age;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 返回目录](#table-of-contents)**
 
 
 ## Naming Conventions
