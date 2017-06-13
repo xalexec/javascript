@@ -4,7 +4,7 @@
 
 [![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb.svg)](https://www.npmjs.com/package/eslint-config-airbnb)
 [![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb-base.svg)](https://www.npmjs.com/package/eslint-config-airbnb-base)
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 其它规范
  - [ES5 (Deprecated)](https://github.com/airbnb/javascript/tree/es5-deprecated/es5)
@@ -31,6 +31,7 @@
   1. [提升 Hoisting](#hoisting)
   1. [比较运算符 & 等号 Comparison Operators & Equality](#comparison-operators--equality)
   1. [块作用域 Blocks](#blocks)
+  1. [Control Statements](#control-statements)
   1. [注释 Comments](#comments)
   1. [空白 Whitespace](#whitespace)
   1. [逗号 Commas](#commas)
@@ -57,11 +58,11 @@
   <a name="types--primitives"></a><a name="1.1"></a>
   - [1.1](#types--primitives) **基本类型**: 直接使用.
 
-    + `string`
-    + `number`
-    + `boolean`
-    + `null`
-    + `undefined`
+    - `string`
+    - `number`
+    - `boolean`
+    - `null`
+    - `undefined`
 
     ```javascript
     const foo = 1;
@@ -75,9 +76,9 @@
   <a name="types--complex"></a><a name="1.2"></a>
   - [1.2](#types--complex)  **复杂类型**: 使用引用.
 
-    + `object`
-    + `array`
-    + `function`
+    - `object`
+    - `array`
+    - `function`
 
     ```javascript
     const foo = [1, 2];
@@ -368,7 +369,7 @@
     ```
 
   <a name="arrays--callback-return"></a><a name="4.5"></a>
-  - [4.5](#arrays--callback-return) 在数组回调方法中使用 return。函数声明只有一行时可以省略 return。 [8.2](#8.2). eslint: [`array-callback-return`](http://eslint.org/docs/rules/array-callback-return)
+  - [4.5](#arrays--callback-return) 在数组回调方法中使用 return。函数声明只有一行时可以省略 return。 [8.2](#arrows--implicit-return). eslint: [`array-callback-return`](http://eslint.org/docs/rules/array-callback-return)
 
     ```javascript
     // good
@@ -417,6 +418,45 @@
     ```
 
 **[⬆ 返回目录](#table-of-contents)**
+
+<a name="arrays--bracket-newline"></a>
+  - [4.6](#arrays--bracket-newline) Use line breaks after open and before close array brackets if an array has multiple lines
+
+  ```javascript
+  // bad
+  const arr = [
+    [0, 1], [2, 3], [4, 5],
+  ];
+
+  const objectInArray = [{
+    id: 1,
+  }, {
+    id: 2,
+  }];
+
+  const numberInArray = [
+    1, 2,
+  ];
+
+  // good
+  const arr = [[0, 1], [2, 3], [4, 5]];
+
+  const objectInArray = [
+    {
+      id: 1,
+    },
+    {
+      id: 2,
+    },
+  ];
+
+  const numberInArray = [
+    1,
+    2,
+  ];
+  ```
+
+**[⬆ back to top](#table-of-contents)**
 
 ## 解构赋值 Destructuring
 
@@ -484,7 +524,6 @@
     // the caller selects only the data they need
     const { left, top } = processInput(input);
     ```
-
 
 **[⬆ 返回目录](#table-of-contents)**
 
@@ -554,7 +593,7 @@
     ```
 
   <a name="strings--eval"></a><a name="6.5"></a>
-  - [6.4](#strings--eval) 禁止在 string 上使用 `eval()`，这将会产生漏洞。
+  - [6.4](#strings--eval) 禁止在 string 上使用 `eval()`，这将会产生漏洞。eslint: [`no-eval`](http://eslint.org/docs/rules/no-eval)
 
   <a name="strings--escaping"></a>
   - [6.5](#strings--escaping) 不要在不必要的地方使用转意。 eslint: [`no-useless-escape`](http://eslint.org/docs/rules/no-useless-escape)
@@ -572,7 +611,6 @@
     ```
 
 **[⬆ 返回目录](#table-of-contents)**
-
 
 ## 函数 Functions
 
@@ -612,7 +650,7 @@
     ```
 
   <a name="functions--in-blocks"></a><a name="7.3"></a>
-  - [7.3](#functions--in-blocks) 禁止在 (if, while等) 块中定义函数，将函数赋值给 var 变量。 eslint: [`no-loop-func`](http://eslint.org/docs/rules/no-loop-func.html)
+  - [7.3](#functions--in-blocks) 禁止在 (if, while等) 块中定义函数，将函数赋值给 var 变量。Assign the function to a variable instead. Browsers will allow you to do it, but they all interpret it differently, which is bad news bears. eslint: [`no-loop-func`](http://eslint.org/docs/rules/no-loop-func.html)
 
   <a name="functions--note-on-blocks"></a><a name="7.4"></a>
   - [7.4](#functions--note-on-blocks) **注意:** ECMA-262 定义代码块 `block` 是语包。函数声明不是语句。 [问题 ECMA-262's 关于这个问题的说明](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97).
@@ -983,7 +1021,6 @@
 
 **[⬆ 返回目录](#table-of-contents)**
 
-
 ## 类 & 构造函数 Classes & Constructors
 
   <a name="constructors--use-class"></a><a name="9.1"></a>
@@ -1001,7 +1038,6 @@
       this.queue.splice(0, 1);
       return value;
     };
-
 
     // good
     class Queue {
@@ -1077,7 +1113,6 @@
       .setHeight(20);
     ```
 
-
   <a name="constructors--tostring"></a><a name="9.4"></a>
   - [9.4](#constructors--tostring) 允许自定义 toString() 方法，只要能确保工作正常就可以。
 
@@ -1149,9 +1184,7 @@
     }
     ```
 
-
 **[⬆ 返回目录](#table-of-contents)**
-
 
 ## 模块 Modules
 
@@ -1418,7 +1451,6 @@
 
 **[⬆ 返回目录](#table-of-contents)**
 
-
 ## Properties
 
   <a name="properties--dot"></a><a name="12.1"></a>
@@ -1455,11 +1487,10 @@
 
 **[⬆ 返回目录](#table-of-contents)**
 
-
 ## 变量 Variables
 
   <a name="variables--const"></a><a name="13.1"></a>
-  - [13.1](#variables--const) 总是使用 `const` 声明变量. 不这么做会得到一个全局变量。我们要避免污染全局命名空间。 eslint: [`no-undef`](http://eslint.org/docs/rules/no-undef) [`prefer-const`](http://eslint.org/docs/rules/prefer-const)
+  - [13.1](#variables--const) 总是使用 `const` 或者 `let` 声明变量. 不这么做会得到一个全局变量。我们要避免污染全局命名空间。 Captain Planet warned us of that. eslint: [`no-undef`](http://eslint.org/docs/rules/no-undef) [`prefer-const`](http://eslint.org/docs/rules/prefer-const)
 
     ```javascript
     // bad
@@ -1470,7 +1501,7 @@
     ```
 
   <a name="variables--one-const"></a><a name="13.2"></a>
-  - [13.2](#variables--one-const) 每次使用 `const` 声明一个变量。 eslint: [`one-var`](http://eslint.org/docs/rules/one-var.html) jscs: [`disallowMultipleVarDecl`](http://jscs.info/rule/disallowMultipleVarDecl)
+  - [13.2](#variables--one-const) 每次使用 `const` 或者 `let` 声明一个变量。 eslint: [`one-var`](http://eslint.org/docs/rules/one-var.html) jscs: [`disallowMultipleVarDecl`](http://jscs.info/rule/disallowMultipleVarDecl)
 
     > 为什么? 这样容易添加新的变量声明，你永远不用担心把 `;` 更换为 `,`，或者引入只有标点的 diffs。在调试时可以遍历每个变量声明，而不是一次跳过他们。
 
@@ -1627,7 +1658,6 @@
 
 **[⬆ 返回目录](#table-of-contents)**
 
-
 ## 提升 Hoisting
 
   <a name="hoisting--about"></a><a name="14.1"></a>
@@ -1723,7 +1753,6 @@
 
 **[⬆ 返回目录](#table-of-contents)**
 
-
 ## 比较运算符 & 等号 Comparison Operators & Equality
 
   <a name="comparison--eqeqeq"></a><a name="15.1"></a>
@@ -1732,7 +1761,6 @@
   <a name="comparison--if"></a><a name="15.2"></a>
   - [15.2](#comparison--if) 判断语句比如 `if` 强制使用 `ToBoolean` 来对比它们，并且并是遵守下面的规则：
 
-  -
     + **Objects** 转换为 **true**
     + **Undefined** 转换为 **false**
     + **Null** e转换为 **false**
@@ -1878,7 +1906,6 @@
 
 **[⬆ 返回目录](#table-of-contents)**
 
-
 ## 块 Blocks
 
   <a name="blocks--braces"></a><a name="16.1"></a>
@@ -1928,14 +1955,67 @@
     }
     ```
 
-
 **[⬆ 返回目录](#table-of-contents)**
 
+## Control Statements
+
+  <a name="control-statements"></a>
+  - [17.1](#control-statements) In case your control statement (`if`, `while` etc.) gets too long or exceeds the maximum line length, each (grouped) condition could be put into a new line. It's up to you whether the logical operator should begin or end the line.
+
+    ```javascript
+    // bad
+    if ((foo === 123 || bar === 'abc') && doesItLookGoodWhenItBecomesThatLong() && isThisReallyHappening()) {
+      thing1();
+    }
+
+    // bad
+    if (foo === 123 &&
+      bar === 'abc') {
+      thing1();
+    }
+
+    // bad
+    if (foo === 123
+      && bar === 'abc') {
+      thing1();
+    }
+
+    // good
+    if (
+      (foo === 123 || bar === "abc") &&
+      doesItLookGoodWhenItBecomesThatLong() &&
+      isThisReallyHappening()
+    ) {
+      thing1();
+    }
+
+    // good
+    if (foo === 123 && bar === 'abc') {
+      thing1();
+    }
+
+    // good
+    if (
+      foo === 123 &&
+      bar === 'abc'
+    ) {
+      thing1();
+    }
+
+    // good
+    if (
+      foo === 123
+      && bar === 'abc'
+    ) {
+      thing1();
+    }
+    ```
+
+**[⬆ back to top](#table-of-contents)**
 
 ## 注释 Comments
 
   <a name="comments--multiline"></a><a name="17.1"></a>
-  - [17.1](#comments--multiline) Use `/** ... */` for multi-line comments.
   - [17.1](#comments--multiline) 多行注释使用 `/** ... */`。
 
     ```javascript
@@ -1966,7 +2046,7 @@
     ```
 
   <a name="comments--singleline"></a><a name="17.2"></a>
-  - [17.2](#comments--singleline) 单行注释，使用 `//`。单行注释放在所注释内容上方单独的新行中，注释上面空一行，除了注释是块中的第一行的情况下。
+  - [18.2](#comments--singleline) 单行注释，使用 `//`。单行注释放在所注释内容上方单独的新行中，注释上面空一行，除了注释是块中的第一行的情况下。
 
     ```javascript
     // bad
@@ -2004,7 +2084,7 @@
     }
     ```
 
-  - [17.3](#comments--spaces) 在注释开头使用空格以使注释易于阅读。 eslint: [`spaced-comment`](http://eslint.org/docs/rules/spaced-comment)
+  - [18.3](#comments--spaces) 在注释开头使用空格以使注释易于阅读。 eslint: [`spaced-comment`](http://eslint.org/docs/rules/spaced-comment)
 
     ```javascript
     // bad
@@ -2041,10 +2121,10 @@
     ```
 
   <a name="comments--actionitems"></a><a name="17.3"></a>
-  - [17.4](#comments--actionitems) 使用 `FIXME` 或者 `TODO` 来让其它开发者理解代码有问题需要被解决，或者你有解决方案需要被实现。这与普通注释不同，因为它们是能付诸实施，`FIXME: -- 需要修复` or `TODO: -- 需要实现`.
+  - [18.4](#comments--actionitems) 使用 `FIXME` 或者 `TODO` 来让其它开发者理解代码有问题需要被解决，或者你有解决方案需要被实现。这与普通注释不同，因为它们是能付诸实施，`FIXME: -- 需要修复` or `TODO: -- 需要实现`.
 
   <a name="comments--fixme"></a><a name="17.4"></a>
-  - [17.5](#comments--fixme) Use `// FIXME:` to annotate problems.
+  - [18.5](#comments--fixme) Use `// FIXME:` to annotate problems.
 
     ```javascript
     class Calculator extends Abacus {
@@ -2058,7 +2138,7 @@
     ```
 
   <a name="comments--todo"></a><a name="17.5"></a>
-  - [17.6](#comments--todo) Use `// TODO:` to annotate solutions to problems.
+  - [18.6](#comments--todo) Use `// TODO:` to annotate solutions to problems.
 
     ```javascript
     class Calculator extends Abacus {
@@ -2073,12 +2153,11 @@
 
 **[⬆ back to top](#table-of-contents)**
 
-
 ## 空白 Whitespace
 
   <a name="whitespace--spaces"></a><a name="18.1"></a>
 
-  - [18.1](#whitespace--spaces) 把 tabs 设置为两个空格。 eslint: [`indent`](http://eslint.org/docs/rules/indent.html) jscs: [`validateIndentation`](http://jscs.info/rule/validateIndentation)
+  - [19.1](#whitespace--spaces) 把 tabs 设置为两个空格。 eslint: [`indent`](http://eslint.org/docs/rules/indent.html) jscs: [`validateIndentation`](http://jscs.info/rule/validateIndentation)
 
     ```javascript
     // bad
@@ -2098,7 +2177,7 @@
     ```
 
   <a name="whitespace--before-blocks"></a><a name="18.2"></a>
-  - [18.2](#whitespace--before-blocks) 在大括号前填加一个空格。 eslint: [`space-before-blocks`](http://eslint.org/docs/rules/space-before-blocks.html) jscs: [`requireSpaceBeforeBlockStatements`](http://jscs.info/rule/requireSpaceBeforeBlockStatements)
+  - [19.2](#whitespace--before-blocks) 在大括号前填加一个空格。 eslint: [`space-before-blocks`](http://eslint.org/docs/rules/space-before-blocks.html) jscs: [`requireSpaceBeforeBlockStatements`](http://jscs.info/rule/requireSpaceBeforeBlockStatements)
 
     ```javascript
     // bad
@@ -2125,7 +2204,7 @@
     ```
 
   <a name="whitespace--around-keywords"></a><a name="18.3"></a>
-  - [18.3](#whitespace--around-keywords) 在 (`if`, `while` 等) 的圆括号前填加一个空格，方法名和方法参数圆括号之间不要填加空格。 eslint: [`keyword-spacing`](http://eslint.org/docs/rules/keyword-spacing.html) jscs: [`requireSpaceAfterKeywords`](http://jscs.info/rule/requireSpaceAfterKeywords)
+  - [19.3](#whitespace--around-keywords) 在 (`if`, `while` 等) 的圆括号前填加一个空格，方法名和方法参数圆括号之间不要填加空格。 eslint: [`keyword-spacing`](http://eslint.org/docs/rules/keyword-spacing.html) jscs: [`requireSpaceAfterKeywords`](http://jscs.info/rule/requireSpaceAfterKeywords)
 
     ```javascript
     // bad
@@ -2150,7 +2229,7 @@
     ```
 
   <a name="whitespace--infix-ops"></a><a name="18.4"></a>
-  - [18.4](#whitespace--infix-ops) 在操作符和操作数之间填加空格。 eslint: [`space-infix-ops`](http://eslint.org/docs/rules/space-infix-ops.html) jscs: [`requireSpaceBeforeBinaryOperators`](http://jscs.info/rule/requireSpaceBeforeBinaryOperators), [`requireSpaceAfterBinaryOperators`](http://jscs.info/rule/requireSpaceAfterBinaryOperators)
+  - [19.4](#whitespace--infix-ops) 在操作符和操作数之间填加空格。 eslint: [`space-infix-ops`](http://eslint.org/docs/rules/space-infix-ops.html) jscs: [`requireSpaceBeforeBinaryOperators`](http://jscs.info/rule/requireSpaceBeforeBinaryOperators), [`requireSpaceAfterBinaryOperators`](http://jscs.info/rule/requireSpaceAfterBinaryOperators)
 
     ```javascript
     // bad
@@ -2161,7 +2240,7 @@
     ```
 
   <a name="whitespace--newline-at-end"></a><a name="18.5"></a>
-  - [18.5](#whitespace--newline-at-end) 文件结尾使用单个换行。 eslint: [`eol-last`](https://github.com/eslint/eslint/blob/master/docs/rules/eol-last.md)
+  - [19.5](#whitespace--newline-at-end) 文件结尾使用单个换行。 eslint: [`eol-last`](https://github.com/eslint/eslint/blob/master/docs/rules/eol-last.md)
 
     ```javascript
     // bad
@@ -2186,7 +2265,7 @@
     ```
 
   <a name="whitespace--chains"></a><a name="18.6"></a>
-  - [18.6](#whitespace--chains) 对超过 2 个调用的长方法链使用缩进。把点写在前面，突出是方法调用面不是新语句。 eslint: [`newline-per-chained-call`](http://eslint.org/docs/rules/newline-per-chained-call) [`no-whitespace-before-property`](http://eslint.org/docs/rules/no-whitespace-before-property)
+  - [19.6](#whitespace--chains) 对超过 2 个调用的长方法链使用缩进。把点写在前面，突出是方法调用面不是新语句。 eslint: [`newline-per-chained-call`](http://eslint.org/docs/rules/newline-per-chained-call) [`no-whitespace-before-property`](http://eslint.org/docs/rules/no-whitespace-before-property)
 
     ```javascript
     // bad
@@ -2229,7 +2308,7 @@
     ```
 
   <a name="whitespace--after-blocks"></a><a name="18.7"></a>
-  - [18.7](#whitespace--after-blocks) 在块和下一个语句中留出一个空行。 jscs: [`requirePaddingNewLinesAfterBlocks`](http://jscs.info/rule/requirePaddingNewLinesAfterBlocks)
+  - [19.7](#whitespace--after-blocks) 在块和下一个语句中留出一个空行。 jscs: [`requirePaddingNewLinesAfterBlocks`](http://jscs.info/rule/requirePaddingNewLinesAfterBlocks)
 
     ```javascript
     // bad
@@ -2287,7 +2366,7 @@
     ```
 
   <a name="whitespace--padded-blocks"></a><a name="18.8"></a>
-  - [18.8](#whitespace--padded-blocks) 不要在块中填充空白。 eslint: [`padded-blocks`](http://eslint.org/docs/rules/padded-blocks.html) jscs:  [`disallowPaddingNewlinesInBlocks`](http://jscs.info/rule/disallowPaddingNewlinesInBlocks)
+  - [19.8](#whitespace--padded-blocks) 不要在块中填充空白。 eslint: [`padded-blocks`](http://eslint.org/docs/rules/padded-blocks.html) jscs:  [`disallowPaddingNewlinesInBlocks`](http://jscs.info/rule/disallowPaddingNewlinesInBlocks)
 
     ```javascript
     // bad
@@ -2320,7 +2399,7 @@
     ```
 
   <a name="whitespace--in-parens"></a><a name="18.9"></a>
-  - [18.9](#whitespace--in-parens) 不要在括号中者填加空格。 eslint: [`space-in-parens`](http://eslint.org/docs/rules/space-in-parens.html) jscs: [`disallowSpacesInsideParentheses`](http://jscs.info/rule/disallowSpacesInsideParentheses)
+  - [19.9](#whitespace--in-parens) 不要在括号中者填加空格。 eslint: [`space-in-parens`](http://eslint.org/docs/rules/space-in-parens.html) jscs: [`disallowSpacesInsideParentheses`](http://jscs.info/rule/disallowSpacesInsideParentheses)
 
     ```javascript
     // bad
@@ -2345,7 +2424,7 @@
     ```
 
   <a name="whitespace--in-brackets"></a><a name="18.10"></a>
-  - [18.10](#whitespace--in-brackets) 不要在中括号中填加空格。 eslint: [`array-bracket-spacing`](http://eslint.org/docs/rules/array-bracket-spacing.html) jscs: [`disallowSpacesInsideArrayBrackets`](http://jscs.info/rule/disallowSpacesInsideArrayBrackets)
+  - [19.10](#whitespace--in-brackets) 不要在中括号中填加空格。 eslint: [`array-bracket-spacing`](http://eslint.org/docs/rules/array-bracket-spacing.html) jscs: [`disallowSpacesInsideArrayBrackets`](http://jscs.info/rule/disallowSpacesInsideArrayBrackets)
 
     ```javascript
     // bad
@@ -2358,7 +2437,7 @@
     ```
 
   <a name="whitespace--in-braces"></a><a name="18.11"></a>
-  - [18.11](#whitespace--in-braces) 在大括号中要填加空格。 eslint: [`object-curly-spacing`](http://eslint.org/docs/rules/object-curly-spacing.html) jscs: [`requireSpacesInsideObjectBrackets`](http://jscs.info/rule/requireSpacesInsideObjectBrackets)
+  - [19.11](#whitespace--in-braces) 在大括号中要填加空格。 eslint: [`object-curly-spacing`](http://eslint.org/docs/rules/object-curly-spacing.html) jscs: [`requireSpacesInsideObjectBrackets`](http://jscs.info/rule/requireSpacesInsideObjectBrackets)
 
     ```javascript
     // bad
@@ -2369,7 +2448,7 @@
     ```
 
   <a name="whitespace--max-len"></a><a name="18.12"></a>
-  - [18.12](#whitespace--max-len) 避免在一行代码中超过 100 个字符 (包括空格). Note: per [above](#strings--line-length), 长字符串不在限制范围内。 eslint: [`max-len`](http://eslint.org/docs/rules/max-len.html) jscs: [`maximumLineLength`](http://jscs.info/rule/maximumLineLength)
+  - [19.12](#whitespace--max-len) 避免在一行代码中超过 100 个字符 (包括空格). Note: per [above](#strings--line-length), 长字符串不在限制范围内。 eslint: [`max-len`](http://eslint.org/docs/rules/max-len.html) jscs: [`maximumLineLength`](http://jscs.info/rule/maximumLineLength)
 
     > 为什么？这会保证代码可读性和可维护性。
 
@@ -2403,7 +2482,7 @@
 ## 逗号 Commas
 
 <a name="commas--leading-trailing"></a><a name="19.1"></a>
-  - [19.1](#commas--leading-trailing) 开头的逗号: **Nope.** eslint: [`comma-style`](http://eslint.org/docs/rules/comma-style.html) jscs: [`requireCommaBeforeLineBreak`](http://jscs.info/rule/requireCommaBeforeLineBreak)
+  - [20.1](#commas--leading-trailing) 开头的逗号: **Nope.** eslint: [`comma-style`](http://eslint.org/docs/rules/comma-style.html) jscs: [`requireCommaBeforeLineBreak`](http://jscs.info/rule/requireCommaBeforeLineBreak)
 
     ```javascript
     // bad
@@ -2438,7 +2517,7 @@
     ```
 
   <a name="commas--dangling"></a><a name="19.2"></a>
-  - [19.2](#commas--dangling) 额外的逗号: **Yup.** eslint: [`comma-dangle`](http://eslint.org/docs/rules/comma-dangle.html) jscs: [`requireTrailingComma`](http://jscs.info/rule/requireTrailingComma)
+  - [20.2](#commas--dangling) 额外的逗号: **Yup.** eslint: [`comma-dangle`](http://eslint.org/docs/rules/comma-dangle.html) jscs: [`requireTrailingComma`](http://jscs.info/rule/requireTrailingComma)
 
     > 为什么？为了方便 git diffs。同时，转换工具像 Babel 等会删除额外的逗号，这意味着你不用担心在低版本的浏览器中额外的逗号导致问题。[trailing comma problem](https://github.com/airbnb/javascript/blob/es5-deprecated/es5/README.md#commas)
 
@@ -2535,11 +2614,10 @@
 
 **[⬆ 返回目录](#table-of-contents)**
 
-
 ## 分号 Semicolons
 
   <a name="semicolons--required"></a><a name="20.1"></a>
-  - [20.1](#20.1) **Yup.** eslint: [`semi`](http://eslint.org/docs/rules/semi.html) jscs: [`requireSemicolons`](http://jscs.info/rule/requireSemicolons)
+  - [21.1](#semicolons--required) **Yup.** eslint: [`semi`](http://eslint.org/docs/rules/semi.html) jscs: [`requireSemicolons`](http://jscs.info/rule/requireSemicolons)
 
     ```javascript
     // bad
@@ -2565,14 +2643,13 @@
 
 **[⬆ 返回目录](#table-of-contents)**
 
-
 ## 类型转换 Type Casting & Coercion
 
   <a name="coercion--explicit"></a><a name="21.1"></a>
   - [21.1](#coercion--explicit) 在语句开始的时候执行类型转换。
 
   <a name="coercion--strings"></a><a name="21.2"></a>
-  - [21.2](#coercion--strings)  Strings:
+  - [22.2](#coercion--strings)  Strings:
 
     ```javascript
     // => this.reviewScore = 9;
@@ -2588,7 +2665,7 @@
     ```
 
   <a name="coercion--numbers"></a><a name="21.3"></a>
-  - [21.3](#coercion--numbers) Numbers: 使用 `Number` 和带基数的 `parseInt` 进行 String 转 Number 类型。eslint: [`radix`](http://eslint.org/docs/rules/radix)
+  - [22.3](#coercion--numbers) Numbers: 使用 `Number` 和带基数的 `parseInt` 进行 String 转 Number 类型。eslint: [`radix`](http://eslint.org/docs/rules/radix)
 
     ```javascript
     const inputValue = '4';
@@ -2613,7 +2690,7 @@
     ```
 
   <a name="coercion--comment-deviations"></a><a name="21.4"></a>
-  - [21.4](#coercion--comment-deviations) 如果你在做一些事情，`parseInt` 成为了瓶颈，你需要什么位移来改善性能，请写清楚相关注释 [performance reasons](https://jsperf.com/coercion-vs-casting/3)。 [performance reasons](https://jsperf.com/coercion-vs-casting/3), leave a comment explaining why and what you're doing.
+  - [22.4](#coercion--comment-deviations) 如果你在做一些事情，`parseInt` 成为了瓶颈，你需要什么位移来改善性能，请写清楚相关注释 [performance reasons](https://jsperf.com/coercion-vs-casting/3)。 [performance reasons](https://jsperf.com/coercion-vs-casting/3), leave a comment explaining why and what you're doing.
 
     ```javascript
     // good
@@ -2626,7 +2703,7 @@
     ```
 
   <a name="coercion--bitwise"></a><a name="21.5"></a>
-  - [21.5](#coercion--bitwise) **Note:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](https://es5.github.io/#x4.3.19), but bitshift operations always return a 32-bit integer ([source](https://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/airbnb/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
+  - [22.5](#coercion--bitwise) **Note:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](https://es5.github.io/#x4.3.19), but bitshift operations always return a 32-bit integer ([source](https://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/airbnb/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
 
     ```javascript
     2147483647 >> 0; // => 2147483647
@@ -2635,7 +2712,7 @@
     ```
 
   <a name="coercion--booleans"></a><a name="21.6"></a>
-  - [21.6](#coercion--booleans) Booleans:
+  - [22.6](#coercion--booleans) Booleans:
 
     ```javascript
     const age = 0;
@@ -2652,11 +2729,10 @@
 
 **[⬆ 返回目录](#table-of-contents)**
 
-
 ## Naming Conventions
 
   <a name="naming--descriptive"></a><a name="22.1"></a>
-  - [22.1](#naming--descriptive) Avoid single letter names. Be descriptive with your naming. eslint: [`id-length`](http://eslint.org/docs/rules/id-length)
+  - [23.1](#naming--descriptive) Avoid single letter names. Be descriptive with your naming. eslint: [`id-length`](http://eslint.org/docs/rules/id-length)
 
     ```javascript
     // bad
@@ -2671,7 +2747,7 @@
     ```
 
   <a name="naming--camelCase"></a><a name="22.2"></a>
-  - [22.2](#naming--camelCase) Use camelCase when naming objects, functions, and instances. eslint: [`camelcase`](http://eslint.org/docs/rules/camelcase.html) jscs: [`requireCamelCaseOrUpperCaseIdentifiers`](http://jscs.info/rule/requireCamelCaseOrUpperCaseIdentifiers)
+  - [23.2](#naming--camelCase) Use camelCase when naming objects, functions, and instances. eslint: [`camelcase`](http://eslint.org/docs/rules/camelcase.html) jscs: [`requireCamelCaseOrUpperCaseIdentifiers`](http://jscs.info/rule/requireCamelCaseOrUpperCaseIdentifiers)
 
     ```javascript
     // bad
@@ -2685,7 +2761,7 @@
     ```
 
   <a name="naming--PascalCase"></a><a name="22.3"></a>
-  - [22.3](#naming--PascalCase) Use PascalCase only when naming constructors or classes. eslint: [`new-cap`](http://eslint.org/docs/rules/new-cap.html) jscs: [`requireCapitalizedConstructors`](http://jscs.info/rule/requireCapitalizedConstructors)
+  - [23.3](#naming--PascalCase) Use PascalCase only when naming constructors or classes. eslint: [`new-cap`](http://eslint.org/docs/rules/new-cap.html) jscs: [`requireCapitalizedConstructors`](http://jscs.info/rule/requireCapitalizedConstructors)
 
     ```javascript
     // bad
@@ -2710,7 +2786,7 @@
     ```
 
   <a name="naming--leading-underscore"></a><a name="22.4"></a>
-  - [22.4](#naming--leading-underscore) Do not use trailing or leading underscores. eslint: [`no-underscore-dangle`](http://eslint.org/docs/rules/no-underscore-dangle.html) jscs: [`disallowDanglingUnderscores`](http://jscs.info/rule/disallowDanglingUnderscores)
+  - [23.4](#naming--leading-underscore) Do not use trailing or leading underscores. eslint: [`no-underscore-dangle`](http://eslint.org/docs/rules/no-underscore-dangle.html) jscs: [`disallowDanglingUnderscores`](http://jscs.info/rule/disallowDanglingUnderscores)
 
     > Why? JavaScript does not have the concept of privacy in terms of properties or methods. Although a leading underscore is a common convention to mean “private”, in fact, these properties are fully public, and as such, are part of your public API contract. This convention might lead developers to wrongly think that a change won't count as breaking, or that tests aren't needed. tl;dr: if you want something to be “private”, it must not be observably present.
 
@@ -2725,7 +2801,7 @@
     ```
 
   <a name="naming--self-this"></a><a name="22.5"></a>
-  - [22.5](#naming--self-this) Don't save references to `this`. Use arrow functions or [Function#bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind). jscs: [`disallowNodeTypes`](http://jscs.info/rule/disallowNodeTypes)
+  - [23.5](#naming--self-this) Don't save references to `this`. Use arrow functions or [Function#bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind). jscs: [`disallowNodeTypes`](http://jscs.info/rule/disallowNodeTypes)
 
     ```javascript
     // bad
@@ -2753,7 +2829,7 @@
     ```
 
   <a name="naming--filename-matches-export"></a><a name="22.6"></a>
-  - [22.6](#naming--filename-matches-export) A base filename should exactly match the name of its default export.
+  - [23.6](#naming--filename-matches-export) A base filename should exactly match the name of its default export.
 
     ```javascript
     // file 1 contents
@@ -2789,7 +2865,7 @@
     ```
 
   <a name="naming--camelCase-default-export"></a><a name="22.7"></a>
-  - [22.7](#naming--camelCase-default-export) Use camelCase when you export-default a function. Your filename should be identical to your function's name.
+  - [23.7](#naming--camelCase-default-export) Use camelCase when you export-default a function. Your filename should be identical to your function's name.
 
     ```javascript
     function makeStyleGuide() {
@@ -2800,7 +2876,7 @@
     ```
 
   <a name="naming--PascalCase-singleton"></a><a name="22.8"></a>
-  - [22.8](#naming--PascalCase-singleton) Use PascalCase when you export a constructor / class / singleton / function library / bare object.
+  - [23.8](#naming--PascalCase-singleton) Use PascalCase when you export a constructor / class / singleton / function library / bare object.
 
     ```javascript
     const AirbnbStyleGuide = {
@@ -2812,7 +2888,7 @@
     ```
 
   <a name="naming--Acronyms-and-Initialisms"></a>
-  - [22.9](#naming--Acronyms-and-Initialisms) Acronyms and initialisms should always be all capitalized, or all lowercased.
+  - [23.9](#naming--Acronyms-and-Initialisms) Acronyms and initialisms should always be all capitalized, or all lowercased.
 
     > Why? Names are for readability, not to appease a computer algorithm.
 
@@ -2844,14 +2920,13 @@
 
 **[⬆ back to top](#table-of-contents)**
 
-
 ## Accessors
 
   <a name="accessors--not-required"></a><a name="23.1"></a>
-  - [23.1](#accessors--not-required) Accessor functions for properties are not required.
+  - [24.1](#accessors--not-required) Accessor functions for properties are not required.
 
   <a name="accessors--no-getters-setters"></a><a name="23.2"></a>
-  - [23.2](#accessors--no-getters-setters) Do not use JavaScript getters/setters as they cause unexpected side effects and are harder to test, maintain, and reason about. Instead, if you do make accessor functions, use getVal() and setVal('hello').
+  - [24.2](#accessors--no-getters-setters) Do not use JavaScript getters/setters as they cause unexpected side effects and are harder to test, maintain, and reason about. Instead, if you do make accessor functions, use getVal() and setVal('hello').
 
     ```javascript
     // bad
@@ -2878,7 +2953,7 @@
     ```
 
   <a name="accessors--boolean-prefix"></a><a name="23.3"></a>
-  - [23.3](#accessors--boolean-prefix) If the property/method is a `boolean`, use `isVal()` or `hasVal()`.
+  - [24.3](#accessors--boolean-prefix) If the property/method is a `boolean`, use `isVal()` or `hasVal()`.
 
     ```javascript
     // bad
@@ -2893,7 +2968,7 @@
     ```
 
   <a name="accessors--consistent"></a><a name="23.4"></a>
-  - [23.4](#accessors--consistent) It's okay to create get() and set() functions, but be consistent.
+  - [24.4](#accessors--consistent) It's okay to create get() and set() functions, but be consistent.
 
     ```javascript
     class Jedi {
@@ -2914,11 +2989,10 @@
 
 **[⬆ back to top](#table-of-contents)**
 
-
 ## Events
 
   <a name="events--hash"></a><a name="24.1"></a>
-  - [24.1](#events--hash) When attaching data payloads to events (whether DOM events or something more proprietary like Backbone events), pass a hash instead of a raw value. This allows a subsequent contributor to add more data to the event payload without finding and updating every handler for the event. For example, instead of:
+  - [25.1](#events--hash) When attaching data payloads to events (whether DOM events or something more proprietary like Backbone events), pass a hash instead of a raw value. This allows a subsequent contributor to add more data to the event payload without finding and updating every handler for the event. For example, instead of:
 
     ```javascript
     // bad
@@ -2946,11 +3020,10 @@
 
   **[⬆ back to top](#table-of-contents)**
 
-
 ## jQuery
 
   <a name="jquery--dollar-prefix"></a><a name="25.1"></a>
-  - [25.1](#jquery--dollar-prefix) Prefix jQuery object variables with a `$`. jscs: [`requireDollarBeforejQueryAssignment`](http://jscs.info/rule/requireDollarBeforejQueryAssignment)
+  - [26.1](#jquery--dollar-prefix) Prefix jQuery object variables with a `$`. jscs: [`requireDollarBeforejQueryAssignment`](http://jscs.info/rule/requireDollarBeforejQueryAssignment)
 
     ```javascript
     // bad
@@ -2964,7 +3037,7 @@
     ```
 
   <a name="jquery--cache"></a><a name="25.2"></a>
-  - [25.2](#jquery--cache) Cache jQuery lookups.
+  - [26.2](#jquery--cache) Cache jQuery lookups.
 
     ```javascript
     // bad
@@ -2992,10 +3065,10 @@
     ```
 
   <a name="jquery--queries"></a><a name="25.3"></a>
-  - [25.3](#jquery--queries) For DOM queries use Cascading `$('.sidebar ul')` or parent > child `$('.sidebar > ul')`. [jsPerf](http://jsperf.com/jquery-find-vs-context-sel/16)
+  - [26.3](#jquery--queries) For DOM queries use Cascading `$('.sidebar ul')` or parent > child `$('.sidebar > ul')`. [jsPerf](http://jsperf.com/jquery-find-vs-context-sel/16)
 
   <a name="jquery--find"></a><a name="25.4"></a>
-  - [25.4](#jquery--find) Use `find` with scoped jQuery object queries.
+  - [26.4](#jquery--find) Use `find` with scoped jQuery object queries.
 
     ```javascript
     // bad
@@ -3016,11 +3089,10 @@
 
 **[⬆ back to top](#table-of-contents)**
 
-
 ## ECMAScript 5 Compatibility
 
   <a name="es5-compat--kangax"></a><a name="26.1"></a>
-  - [26.1](#es5-compat--kangax) Refer to [Kangax](https://twitter.com/kangax/)'s ES5 [compatibility table](https://kangax.github.io/es5-compat-table/).
+  - [27.1](#es5-compat--kangax) Refer to [Kangax](https://twitter.com/kangax/)'s ES5 [compatibility table](https://kangax.github.io/es5-compat-table/).
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -3028,7 +3100,7 @@
 ## ECMAScript 6+ (ES 2015+) Styles
 
   <a name="es6-styles"></a><a name="27.1"></a>
-  - [27.1](#es6-styles) This is a collection of links to the various ES6 features.
+  - [28.1](#es6-styles) This is a collection of links to the various ES6 features.
 
 1. [Arrow Functions](#arrow-functions)
 1. [Classes](#classes--constructors)
@@ -3045,7 +3117,7 @@
 1. [Modules](#modules)
 
   <a name="tc39-proposals"></a>
-  - [27.2](#tc39-proposals) Do not use [TC39 proposals](https://github.com/tc39/proposals) that have not reached stage 3.
+  - [28.2](#tc39-proposals) Do not use [TC39 proposals](https://github.com/tc39/proposals) that have not reached stage 3.
 
     > Why? [They are not finalized](https://tc39.github.io/process-document/), and they are subject to change or to be withdrawn entirely. We want to use JavaScript, and proposals are not JavaScript yet.
 
@@ -3054,7 +3126,7 @@
 ## Testing
 
   <a name="testing--yup"></a><a name="28.1"></a>
-  - [28.1](#testing--yup) **Yup.**
+  - [29.1](#testing--yup) **Yup.**
 
     ```javascript
     function foo() {
@@ -3063,16 +3135,15 @@
     ```
 
   <a name="testing--for-real"></a><a name="28.2"></a>
-  - [28.2](#testing--for-real) **No, but seriously**:
-   - Whichever testing framework you use, you should be writing tests!
-   - Strive to write many small pure functions, and minimize where mutations occur.
-   - Be cautious about stubs and mocks - they can make your tests more brittle.
-   - We primarily use [`mocha`](https://www.npmjs.com/package/mocha) at Airbnb. [`tape`](https://www.npmjs.com/package/tape) is also used occasionally for small, separate modules.
-   - 100% test coverage is a good goal to strive for, even if it's not always practical to reach it.
-   - Whenever you fix a bug, _write a regression test_. A bug fixed without a regression test is almost certainly going to break again in the future.
+  - [29.2](#testing--for-real) **No, but seriously**:
+    - Whichever testing framework you use, you should be writing tests!
+    - Strive to write many small pure functions, and minimize where mutations occur.
+    - Be cautious about stubs and mocks - they can make your tests more brittle.
+    - We primarily use [`mocha`](https://www.npmjs.com/package/mocha) at Airbnb. [`tape`](https://www.npmjs.com/package/tape) is also used occasionally for small, separate modules.
+    - 100% test coverage is a good goal to strive for, even if it's not always practical to reach it.
+    - Whenever you fix a bug, _write a regression test_. A bug fixed without a regression test is almost certainly going to break again in the future.
 
 **[⬆ back to top](#table-of-contents)**
-
 
 ## Performance
 
@@ -3087,7 +3158,6 @@
   - Loading...
 
 **[⬆ back to top](#table-of-contents)**
-
 
 ## Resources
 
@@ -3105,9 +3175,9 @@
 **Tools**
 
   - Code Style Linters
-    + [ESlint](http://eslint.org/) - [Airbnb Style .eslintrc](https://github.com/airbnb/javascript/blob/master/linters/.eslintrc)
-    + [JSHint](http://jshint.com/) - [Airbnb Style .jshintrc](https://github.com/airbnb/javascript/blob/master/linters/.jshintrc)
-    + [JSCS](https://github.com/jscs-dev/node-jscs) - [Airbnb Style Preset](https://github.com/jscs-dev/node-jscs/blob/master/presets/airbnb.json) (Deprecated, please use [ESlint](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base))
+    - [ESlint](http://eslint.org/) - [Airbnb Style .eslintrc](https://github.com/airbnb/javascript/blob/master/linters/.eslintrc)
+    - [JSHint](http://jshint.com/) - [Airbnb Style .jshintrc](https://github.com/airbnb/javascript/blob/master/linters/.jshintrc)
+    - [JSCS](https://github.com/jscs-dev/node-jscs) - [Airbnb Style Preset](https://github.com/jscs-dev/node-jscs/blob/master/presets/airbnb.json) (Deprecated, please use [ESlint](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base))
   - Neutrino preset - [neutrino-preset-airbnb-base](https://neutrino.js.org/presets/neutrino-preset-airbnb-base/)
 
 **Other Style Guides**
@@ -3168,7 +3238,6 @@
   - [JavaScript Air](https://javascriptair.com/)
   - [JavaScript Jabber](https://devchat.tv/js-jabber/)
 
-
 **[⬆ back to top](#table-of-contents)**
 
 ## In the Wild
@@ -3180,10 +3249,12 @@
   - **Aan Zee**: [AanZee/javascript](https://github.com/AanZee/javascript)
   - **Adult Swim**: [adult-swim/javascript](https://github.com/adult-swim/javascript)
   - **Airbnb**: [airbnb/javascript](https://github.com/airbnb/javascript)
+  - **AltSchool**: [AltSchool/javascript](https://github.com/AltSchool/javascript)
   - **Apartmint**: [apartmint/javascript](https://github.com/apartmint/javascript)
   - **Ascribe**: [ascribe/javascript](https://github.com/ascribe/javascript)
   - **Avalara**: [avalara/javascript](https://github.com/avalara/javascript)
   - **Avant**: [avantcredit/javascript](https://github.com/avantcredit/javascript)
+  - **Axept**: [axept/javascript](https://github.com/axept/javascript)
   - **BashPros**: [BashPros/javascript](https://github.com/BashPros/javascript)
   - **Billabong**: [billabong/javascript](https://github.com/billabong/javascript)
   - **Bisk**: [bisk/javascript](https://github.com/Bisk/javascript/)
@@ -3205,6 +3276,7 @@
   - **Flexberry**: [Flexberry/javascript-style-guide](https://github.com/Flexberry/javascript-style-guide)
   - **Gawker Media**: [gawkermedia/javascript](https://github.com/gawkermedia/javascript)
   - **General Electric**: [GeneralElectric/javascript](https://github.com/GeneralElectric/javascript)
+  - **Generation Tux**: [GenerationTux/javascript](https://github.com/generationtux/styleguide)
   - **GoodData**: [gooddata/gdc-js-style](https://github.com/gooddata/gdc-js-style)
   - **Grooveshark**: [grooveshark/javascript](https://github.com/grooveshark/javascript)
   - **Honey**: [honeyscience/javascript](https://github.com/honeyscience/javascript)
@@ -3212,6 +3284,7 @@
   - **Huballin**: [huballin/javascript](https://github.com/huballin/javascript)
   - **HubSpot**: [HubSpot/javascript](https://github.com/HubSpot/javascript)
   - **Hyper**: [hyperoslo/javascript-playbook](https://github.com/hyperoslo/javascript-playbook/blob/master/style.md)
+  - **InterCity Group**: [intercitygroup/javascript-style-guide](https://github.com/intercitygroup/javascript-style-guide)
   - **Jam3**: [Jam3/Javascript-Code-Conventions](https://github.com/Jam3/Javascript-Code-Conventions)
   - **JeopardyBot**: [kesne/jeopardy-bot](https://github.com/kesne/jeopardy-bot/blob/master/STYLEGUIDE.md)
   - **JSSolutions**: [JSSolutions/javascript](https://github.com/JSSolutions/javascript)
@@ -3228,6 +3301,7 @@
   - **National Geographic**: [natgeo/javascript](https://github.com/natgeo/javascript)
   - **Nimbl3**: [nimbl3/javascript](https://github.com/nimbl3/javascript)
   - **Nulogy**: [nulogy/javascript](https://github.com/nulogy/javascript)
+  - **Orange Hill Development**: [orangehill/javascript](https://github.com/orangehill/javascript)
   - **Orion Health**: [orionhealth/javascript](https://github.com/orionhealth/javascript)
   - **OutBoxSoft**: [OutBoxSoft/javascript](https://github.com/OutBoxSoft/javascript)
   - **Peerby**: [Peerby/javascript](https://github.com/Peerby/javascript)
@@ -3238,6 +3312,7 @@
   - **Ripple**: [ripple/javascript-style-guide](https://github.com/ripple/javascript-style-guide)
   - **SeekingAlpha**: [seekingalpha/javascript-style-guide](https://github.com/seekingalpha/javascript-style-guide)
   - **Shutterfly**: [shutterfly/javascript](https://github.com/shutterfly/javascript)
+  - **Sourcetoad**: [sourcetoad/javascript](https://github.com/sourcetoad/javascript)
   - **Springload**: [springload/javascript](https://github.com/springload/javascript)
   - **StratoDem Analytics**: [stratodem/javascript](https://github.com/stratodem/javascript)
   - **SteelKiwi Development**: [steelkiwi/javascript](https://github.com/steelkiwi/javascript)
@@ -3275,6 +3350,7 @@
   - ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**: [leonidlebedev/javascript-airbnb](https://github.com/leonidlebedev/javascript-airbnb)
   - ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Spain.png) **Spanish**: [paolocarrasco/javascript-style-guide](https://github.com/paolocarrasco/javascript-style-guide)
   - ![th](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Thailand.png) **Thai**: [lvarayut/javascript-style-guide](https://github.com/lvarayut/javascript-style-guide)
+  - ![ua](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Ukraine.png) **Ukrainian**: [ivanzusko/javascript](https://github.com/ivanzusko/javascript)
   - ![vn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnam**: [hngiang/javascript-style-guide](https://github.com/hngiang/javascript-style-guide)
 
 ## The JavaScript Style Guide Guide
@@ -3288,7 +3364,6 @@
 ## Contributors
 
   - [View Contributors](https://github.com/airbnb/javascript/graphs/contributors)
-
 
 ## License
 
